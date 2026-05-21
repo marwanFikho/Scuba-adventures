@@ -4,9 +4,10 @@ import Card from '../../components/ui/Card.astro';
 import Input from '../../components/ui/Input.astro';
 import Button from '../../components/ui/Button.astro';
 import { authService } from '../../services/auth.service';
-import { getLangFromPathname } from '../../lib/i18n';
+import { getLangFromPathname, getTranslations } from '../../lib/i18n';
 
 const lang = getLangFromPathname(Astro.url.pathname);
+const t = getTranslations(lang);
 const basePath = `/${lang}`;
 
 if (Astro.request.method === 'POST') {
@@ -20,29 +21,28 @@ if (Astro.request.method === 'POST') {
         return Astro.redirect(`${basePath}/dashboard`);
 
     } catch (error) {
-        // Handle error, maybe show a message to the user
         console.error(error);
     }
 }
 ---
 
-<MainLayout title="Sign Up" description="Create your Scuba Academy account.">
+<MainLayout title={t.auth.signUpTitle} description={t.auth.signUpDesc}>
     <div class="max-w-md mx-auto py-20">
         <Card>
-            <h1 class="text-3xl font-bold text-center mb-6">Create Account</h1>
+            <h1 class="text-3xl font-bold text-center mb-6">{t.auth.createAccount}</h1>
             <form method="POST" class="space-y-6">
                 <div>
-                    <label for="email" class="block text-sm font-medium text-text-secondary">Email</label>
-                    <Input type="email" name="email" id="email" placeholder="you@example.com" required />
+                    <label for="email" class="block text-sm font-medium text-text-secondary">{t.auth.email}</label>
+                    <Input type="email" name="email" id="email" placeholder={t.auth.emailPlaceholder} required />
                 </div>
                 <div>
-                    <label for="password" class="block text-sm font-medium text-text-secondary">Password</label>
-                    <Input type="password" name="password" id="password" placeholder="********" required />
+                    <label for="password" class="block text-sm font-medium text-text-secondary">{t.auth.password}</label>
+                    <Input type="password" name="password" id="password" placeholder={t.auth.passwordPlaceholder} required />
                 </div>
-                <Button type="submit" class="w-full" size="lg">Sign Up</Button>
+                <Button type="submit" class="w-full" size="lg">{t.auth.signUp}</Button>
             </form>
             <p class="mt-6 text-center text-sm text-text-secondary">
-                Already have an account? <a href={`${basePath}/signin`} class="font-medium text-secondary hover:underline">Sign In</a>
+                {t.auth.hasAccount} <a href={`${basePath}/signin`} class="font-medium text-secondary hover:underline">{t.auth.signIn}</a>
             </p>
         </Card>
     </div>

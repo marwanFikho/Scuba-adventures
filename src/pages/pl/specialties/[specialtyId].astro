@@ -1,15 +1,16 @@
 ---
 import MainLayout from '../../../layouts/MainLayout.astro';
-import { specialties } from '../../../lib/mock-data';
+import { getSpecialtyById } from '../../../lib/course-translations';
 import { getLangFromPathname, getTranslations } from '../../../lib/i18n';
 
 const lang = getLangFromPathname(Astro.url.pathname);
 const t = getTranslations(lang);
 
-const specialty = specialties.find(s => s.id === Astro.params.specialtyId);
+const specialtyId = Astro.params.specialtyId;
+const specialty = getSpecialtyById(specialtyId!, lang);
 
 if (!specialty) {
-  return Astro.redirect('/pl/specialties');
+  return Astro.redirect(`/${lang}/specialties`);
 }
 
 const dayLabel = specialty.durationDays === 1 ? t.specialties.day : t.specialties.days;
@@ -18,7 +19,7 @@ const dayLabel = specialty.durationDays === 1 ? t.specialties.day : t.specialtie
 <MainLayout title={specialty.title} description={specialty.shortDescription}>
   <section class="pt-28 pb-16 bg-background" data-animate="fade-up">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <a href="/pl/specialties" class="text-secondary hover:underline mb-8 inline-block">← {t.specialties.backToSpecialties}</a>
+      <a href={`/${lang}/specialties`} class="text-secondary hover:underline mb-8 inline-block">← {t.specialties.backToSpecialties}</a>
       
       <div class="grid md:grid-cols-2 gap-8 mb-12">
         <div class="relative h-96 overflow-hidden rounded-xl shadow-premium">
