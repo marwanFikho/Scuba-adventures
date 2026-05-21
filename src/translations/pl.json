@@ -5,6 +5,7 @@
     "specialties": "Specjalizacje",
     "contact": "Kontakt",
     "signIn": "Zaloguj się",
+    "signUp": "Zarejestruj się",
     "dashboard": "Panel",
     "admin": "Admin",
     "language": "Język"
@@ -46,7 +47,10 @@
     "signIn": "Zaloguj się",
     "signUp": "Zarejestruj się",
     "noAccount": "Nie masz konta?",
-    "hasAccount": "Masz już konto?"
+    "hasAccount": "Masz już konto?",
+    "createAccount": "Utwórz konto",
+    "emailPlaceholder": "jan@example.com",
+    "passwordPlaceholder": "********"
   },
   "dashboard": {
     "title": "Panel użytkownika",
@@ -94,6 +98,20 @@
     "addGallery": "Dodaj zdjęcie",
     "editCourse": "Edytuj kurs",
     "uploadImage": "Prześlij zdjęcie",
+    "title": "Tytuł",
+    "seats": "Miejsca",
+    "price": "Cena",
+    "status": "Status",
+    "destination": "Destynacja",
+    "departure": "Wyjazd",
+    "active": "Aktywne",
+    "open": "Otwarte",
+    "pending": "Oczekujące",
+    "bookings": "Rezerwacje",
+    "galleryUploads": "Zdjęcia w galerii",
+    "usersCount": "Aktywni użytkownicy",
+    "adminCount": "Admin",
+    "newThisMonth": "Nowe w tym miesiącu",
     "fields": {
       "title": "Tytuł",
       "description": "Opis",
@@ -116,7 +134,13 @@
     "name": "Imię",
     "message": "Wiadomość",
     "send": "Wyślij",
-    "location": "Hurghada, Egipt"
+    "location": "Hurghada, Egipt",
+    "namePlaceholder": "Twoje imię",
+    "socialTitle": "Połącz się z nami w mediach społecznościowych",
+    "facebook": "Facebook",
+    "instagram": "Instagram",
+    "tiktok": "TikTok",
+    "whatsapp": "WhatsApp"
   },
   "gallery": {
     "title": "Galeria",
@@ -130,7 +154,16 @@
     "title": "Specjalizacje",
     "description": "Rozwijaj umiejętności nurkowe.",
     "heading": "Specjalizacje",
-    "subtitle": "Skoncentrowane szkolenia dla zaawansowanych."
+    "subtitle": "Skoncentrowane szkolenia dla zaawansowanych.",
+    "backToSpecialties": "Wróć do specjalizacji",
+    "price": "Cena",
+    "duration": "Czas trwania",
+    "equipment": "Sprzęt",
+    "requirements": "Wymagania",
+    "includes": "Zawiera",
+    "excludes": "Nie zawiera",
+    "day": "dzień",
+    "days": "dni"
   },
   "privacy": {
     "title": "Polityka prywatności",
@@ -165,6 +198,39 @@
     "heading": "Kursy",
     "subtitle": "Certyfikacje prowadzone przez światowej klasy instruktorów.",
     "bookNow": "Zarezerwuj",
-    "selectDate": "Preferowana data rozpoczęcia"
+    "selectDate": "Preferowana data rozpoczęcia",
+    "backToCourses": "Wróć do kursów",
+    "price": "Cena",
+    "duration": "Czas trwania",
+    "equipment": "Sprzęt",
+    "requirements": "Wymagania",
+    "includes": "Zawiera",
+    "excludes": "Nie zawiera",
+    "day": "dzień",
+    "days": "dni",
+    "difficulty": "Poziom",
+    "seats": "Miejsca",
+    "instructor": "Instruktor",
+    "nextStart": "Następny start",
+    "learnMore": "Dowiedz się więcej",
+    "noCourses": "Brak dostępnych kursów. Sprawdź ponownie!"
+  },
+  "notFound": {
+    "title": "Nie znaleziono strony",
+    "description": "Nie znaleziono strony.",
+    "heading": "404",
+    "text": "Strona, której szukasz, odpłynęła.",
+    "returnHome": "Wróć na stronę główną"
+  },
+  "common": {
+    "facebook": "Facebook",
+    "instagram": "Instagram",
+    "whatsapp": "WhatsApp",
+    "telegram": "Telegram",
+    "english": "English",
+    "polish": "Polski",
+    "russian": "Русский",
+    "bookNow": "Zarezerwuj teraz",
+    "reserveSpot": "Zarezerwuj miejsce"
   }
 }

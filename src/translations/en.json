@@ -5,6 +5,7 @@
     "specialties": "Specialties",
     "contact": "Contact Us",
     "signIn": "Sign In",
+    "signUp": "Sign Up",
     "dashboard": "Dashboard",
     "admin": "Admin",
     "language": "Language"
@@ -46,7 +47,10 @@
     "signIn": "Sign In",
     "signUp": "Sign Up",
     "noAccount": "Don't have an account?",
-    "hasAccount": "Already have an account?"
+    "hasAccount": "Already have an account?",
+    "createAccount": "Create Account",
+    "emailPlaceholder": "you@example.com",
+    "passwordPlaceholder": "********"
   },
   "dashboard": {
     "title": "Dashboard",
@@ -94,6 +98,20 @@
     "addGallery": "Add image",
     "editCourse": "Edit course",
     "uploadImage": "Upload image",
+    "title": "Title",
+    "seats": "Seats",
+    "price": "Price",
+    "status": "Status",
+    "destination": "Destination",
+    "departure": "Departure",
+    "active": "Active",
+    "open": "Open",
+    "pending": "Pending",
+    "bookings": "Bookings",
+    "galleryUploads": "Gallery Uploads",
+    "usersCount": "Active Users",
+    "adminCount": "Admin",
+    "newThisMonth": "New this month",
     "fields": {
       "title": "Title",
       "description": "Description",
@@ -116,7 +134,13 @@
     "name": "Name",
     "message": "Message",
     "send": "Send Message",
-    "location": "Hurghada, Egypt"
+    "location": "Hurghada, Egypt",
+    "namePlaceholder": "Your name",
+    "socialTitle": "Connect with us on social media",
+    "facebook": "Facebook",
+    "instagram": "Instagram",
+    "tiktok": "TikTok",
+    "whatsapp": "WhatsApp"
   },
   "gallery": {
     "title": "Gallery",
@@ -165,6 +189,54 @@
     "heading": "Courses",
     "subtitle": "Premium certifications guided by world-class instructors.",
     "bookNow": "Reserve Spot",
-    "selectDate": "Preferred start date"
+    "selectDate": "Preferred start date",
+    "backToCourses": "Back to Courses",
+    "price": "Price",
+    "duration": "Duration",
+    "equipment": "Equipment",
+    "requirements": "Requirements",
+    "includes": "Includes",
+    "excludes": "Excludes",
+    "day": "day",
+    "days": "days",
+    "difficulty": "Difficulty",
+    "seats": "Seats",
+    "instructor": "Instructor",
+    "nextStart": "Next Start",
+    "learnMore": "Learn More",
+    "noCourses": "No courses available at the moment. Check back soon!"
+  },
+  "specialties": {
+    "title": "Specialties",
+    "description": "Advance your skills with specialty training.",
+    "heading": "Specialties",
+    "subtitle": "Focused training for divers seeking mastery.",
+    "backToSpecialties": "Back to Specialties",
+    "price": "Price",
+    "duration": "Duration",
+    "equipment": "Equipment",
+    "requirements": "Requirements",
+    "includes": "Includes",
+    "excludes": "Excludes",
+    "day": "day",
+    "days": "days"
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "description": "Page not found.",
+    "heading": "404",
+    "text": "The page you're looking for has drifted away.",
+    "returnHome": "Return Home"
+  },
+  "common": {
+    "facebook": "Facebook",
+    "instagram": "Instagram",
+    "whatsapp": "WhatsApp",
+    "telegram": "Telegram",
+    "english": "English",
+    "polish": "Polski",
+    "russian": "Русский",
+    "bookNow": "Book Now",
+    "reserveSpot": "Reserve Spot"
   }
 }

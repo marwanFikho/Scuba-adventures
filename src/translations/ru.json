@@ -5,6 +5,7 @@
     "specialties": "Специализации",
     "contact": "Контакты",
     "signIn": "Войти",
+    "signUp": "Регистрация",
     "dashboard": "Кабинет",
     "admin": "Админ",
     "language": "Язык"
@@ -46,7 +47,10 @@
     "signIn": "Войти",
     "signUp": "Зарегистрироваться",
     "noAccount": "Нет аккаунта?",
-    "hasAccount": "Уже есть аккаунт?"
+    "hasAccount": "Уже есть аккаунт?",
+    "createAccount": "Создать аккаунт",
+    "emailPlaceholder": "you@example.com",
+    "passwordPlaceholder": "********"
   },
   "dashboard": {
     "title": "Личный кабинет",
@@ -94,6 +98,20 @@
     "addGallery": "Добавить фото",
     "editCourse": "Редактировать курс",
     "uploadImage": "Загрузить фото",
+    "title": "Название",
+    "seats": "Места",
+    "price": "Цена",
+    "status": "Статус",
+    "destination": "Направление",
+    "departure": "Отправление",
+    "active": "Активные",
+    "open": "Открыто",
+    "pending": "Ожидание",
+    "bookings": "Бронирования",
+    "galleryUploads": "Фото в галерее",
+    "usersCount": "Активные пользователи",
+    "adminCount": "Админ",
+    "newThisMonth": "Новых в этом месяце",
     "fields": {
       "title": "Название",
       "description": "Описание",
@@ -116,7 +134,13 @@
     "name": "Имя",
     "message": "Сообщение",
     "send": "Отправить",
-    "location": "Хургада, Египет"
+    "location": "Хургада, Египет",
+    "namePlaceholder": "Ваше имя",
+    "socialTitle": "Подписывайтесь на нас в соцсетях",
+    "facebook": "Facebook",
+    "instagram": "Instagram",
+    "tiktok": "TikTok",
+    "whatsapp": "WhatsApp"
   },
   "gallery": {
     "title": "Галерея",
@@ -130,7 +154,16 @@
     "title": "Специализации",
     "description": "Развивайте навыки дайвинга.",
     "heading": "Специализации",
-    "subtitle": "Углублённое обучение для опытных дайверов."
+    "subtitle": "Углублённое обучение для опытных дайверов.",
+    "backToSpecialties": "Назад к специализациям",
+    "price": "Цена",
+    "duration": "Длительность",
+    "equipment": "Снаряжение",
+    "requirements": "Требования",
+    "includes": "Включает",
+    "excludes": "Не включает",
+    "day": "день",
+    "days": "дней"
   },
   "privacy": {
     "title": "Политика конфиденциальности",
@@ -165,6 +198,39 @@
     "heading": "Курсы",
     "subtitle": "Сертификации с инструкторами мирового уровня.",
     "bookNow": "Забронировать",
-    "selectDate": "Предпочтительная дата"
+    "selectDate": "Предпочтительная дата",
+    "backToCourses": "Назад к курсам",
+    "price": "Цена",
+    "duration": "Длительность",
+    "equipment": "Снаряжение",
+    "requirements": "Требования",
+    "includes": "Включает",
+    "excludes": "Не включает",
+    "day": "день",
+    "days": "дней",
+    "difficulty": "Сложность",
+    "seats": "Места",
+    "instructor": "Инструктор",
+    "nextStart": "Следующий старт",
+    "learnMore": "Подробнее",
+    "noCourses": "Курсов пока нет. Загляните позже!"
+  },
+  "notFound": {
+    "title": "Страница не найдена",
+    "description": "Страница не найдена.",
+    "heading": "404",
+    "text": "Страница, которую вы ищете, уплыла.",
+    "returnHome": "На главную"
+  },
+  "common": {
+    "facebook": "Facebook",
+    "instagram": "Instagram",
+    "whatsapp": "WhatsApp",
+    "telegram": "Telegram",
+    "english": "English",
+    "polish": "Polski",
+    "russian": "Русский",
+    "bookNow": "Забронировать сейчас",
+    "reserveSpot": "Забронировать место"
   }
 }

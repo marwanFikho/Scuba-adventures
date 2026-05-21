@@ -1,18 +1,24 @@
 ---
 import MainLayout from '../../../layouts/MainLayout.astro';
 import { specialties } from '../../../lib/mock-data';
+import { getLangFromPathname, getTranslations } from '../../../lib/i18n';
+
+const lang = getLangFromPathname(Astro.url.pathname);
+const t = getTranslations(lang);
 
 const specialty = specialties.find(s => s.id === Astro.params.specialtyId);
 
 if (!specialty) {
   return Astro.redirect('/en/specialties');
 }
+
+const dayLabel = specialty.durationDays === 1 ? t.specialties.day : t.specialties.days;
 ---
 
 <MainLayout title={specialty.title} description={specialty.shortDescription}>
   <section class="pt-28 pb-16 bg-background" data-animate="fade-up">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <a href="/en/specialties" class="text-secondary hover:underline mb-8 inline-block">← Back to Specialties</a>
+      <a href="/en/specialties" class="text-secondary hover:underline mb-8 inline-block">← {t.specialties.backToSpecialties}</a>
       
       <div class="grid md:grid-cols-2 gap-8 mb-12">
         <div class="relative h-96 overflow-hidden rounded-xl shadow-premium">
@@ -32,35 +38,35 @@ if (!specialty) {
           <div class="bg-surface border border-gray-200/50 rounded-lg p-6 space-y-4 mb-8">
             {specialty.price && (
               <div class="flex items-center justify-between pb-4 border-b border-gray-200">
-                <span class="text-text-secondary">Price</span>
+                <span class="text-text-secondary">{t.specialties.price}</span>
                 <span class="text-3xl font-bold text-primary">€{specialty.price}</span>
               </div>
             )}
             
             {specialty.durationDays && (
               <div class="flex items-center justify-between pb-4 border-b border-gray-200">
-                <span class="text-text-secondary">Duration</span>
-                <span class="font-semibold">{specialty.durationDays} day{specialty.durationDays > 1 ? 's' : ''}</span>
+                <span class="text-text-secondary">{t.specialties.duration}</span>
+                <span class="font-semibold">{specialty.durationDays} {dayLabel}</span>
               </div>
             )}
             
             {specialty.equipment && (
               <div class="flex items-center justify-between pb-4 border-b border-gray-200">
-                <span class="text-text-secondary">Equipment</span>
+                <span class="text-text-secondary">{t.specialties.equipment}</span>
                 <span class="font-semibold">{specialty.equipment}</span>
               </div>
             )}
             
             {specialty.requirements && (
               <div class="flex items-center justify-between">
-                <span class="text-text-secondary">Requirements</span>
+                <span class="text-text-secondary">{t.specialties.requirements}</span>
                 <span class="font-semibold">{specialty.requirements}</span>
               </div>
             )}
           </div>
           
           <button class="w-full bg-secondary text-white py-3 rounded-md font-semibold hover:bg-opacity-90 transition-colors">
-            Book Now
+            {t.common.bookNow}
           </button>
         </div>
       </div>
@@ -76,7 +82,7 @@ if (!specialty) {
       <div class="grid md:grid-cols-2 gap-12 mb-12">
         {specialty.includes && specialty.includes.length > 0 && (
           <div>
-            <h3 class="text-xl font-bold text-primary mb-4">Includes</h3>
+            <h3 class="text-xl font-bold text-primary mb-4">{t.specialties.includes}</h3>
             <ul class="space-y-3">
               {specialty.includes.map((item) => (
                 <li class="flex items-start gap-3">
@@ -90,7 +96,7 @@ if (!specialty) {
         
         {specialty.excludes && specialty.excludes.length > 0 && (
           <div>
-            <h3 class="text-xl font-bold text-primary mb-4">Excludes</h3>
+            <h3 class="text-xl font-bold text-primary mb-4">{t.specialties.excludes}</h3>
             <ul class="space-y-3">
               {specialty.excludes.map((item) => (
                 <li class="flex items-start gap-3">

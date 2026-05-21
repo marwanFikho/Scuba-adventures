@@ -12,12 +12,14 @@ const course = courses.find(c => c.id === courseId);
 if (!course) {
   return Astro.redirect('/ru/courses');
 }
+
+const dayLabel = course.durationDays === 1 ? t.courses.day : t.courses.days;
 ---
 
 <MainLayout title={course.title} description={course.shortDescription}>
   <section class="pt-28 pb-16 bg-background" data-animate="fade-up">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <a href="/ru/courses" class="text-secondary hover:underline mb-8 inline-block">← Вернуться к курсам</a>
+      <a href="/ru/courses" class="text-secondary hover:underline mb-8 inline-block">← {t.courses.backToCourses}</a>
       
       <div class="grid md:grid-cols-2 gap-8 mb-12">
         <div class="relative h-96 overflow-hidden rounded-xl shadow-premium">
@@ -37,35 +39,35 @@ if (!course) {
           <div class="bg-surface border border-gray-200/50 rounded-lg p-6 space-y-4 mb-8">
             {course.price && (
               <div class="flex items-center justify-between pb-4 border-b border-gray-200">
-                <span class="text-text-secondary">Цена</span>
+                <span class="text-text-secondary">{t.courses.price}</span>
                 <span class="text-3xl font-bold text-primary">€{course.price}</span>
               </div>
             )}
             
             {course.durationDays && (
               <div class="flex items-center justify-between pb-4 border-b border-gray-200">
-                <span class="text-text-secondary">Продолжительность</span>
-                <span class="font-semibold">{course.durationDays} день{course.durationDays > 1 ? 'и' : ''}</span>
+                <span class="text-text-secondary">{t.courses.duration}</span>
+                <span class="font-semibold">{course.durationDays} {dayLabel}</span>
               </div>
             )}
             
             {course.equipment && (
               <div class="flex items-center justify-between pb-4 border-b border-gray-200">
-                <span class="text-text-secondary">Оборудование</span>
+                <span class="text-text-secondary">{t.courses.equipment}</span>
                 <span class="font-semibold">{course.equipment}</span>
               </div>
             )}
             
             {course.requirements && (
               <div class="flex items-center justify-between">
-                <span class="text-text-secondary">Требования</span>
+                <span class="text-text-secondary">{t.courses.requirements}</span>
                 <span class="font-semibold">{course.requirements}</span>
               </div>
             )}
           </div>
           
           <button class="w-full bg-secondary text-white py-3 rounded-md font-semibold hover:bg-opacity-90 transition-colors">
-            Забронировать
+            {t.common.bookNow}
           </button>
         </div>
       </div>
@@ -81,7 +83,7 @@ if (!course) {
       <div class="grid md:grid-cols-2 gap-12 mb-12">
         {course.includes && course.includes.length > 0 && (
           <div>
-            <h3 class="text-xl font-bold text-primary mb-4">Включено</h3>
+            <h3 class="text-xl font-bold text-primary mb-4">{t.courses.includes}</h3>
             <ul class="space-y-3">
               {course.includes.map((item) => (
                 <li class="flex items-start gap-3">
@@ -95,7 +97,7 @@ if (!course) {
         
         {course.excludes && course.excludes.length > 0 && (
           <div>
-            <h3 class="text-xl font-bold text-primary mb-4">Не включено</h3>
+            <h3 class="text-xl font-bold text-primary mb-4">{t.courses.excludes}</h3>
             <ul class="space-y-3">
               {course.excludes.map((item) => (
                 <li class="flex items-start gap-3">

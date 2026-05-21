@@ -45,22 +45,22 @@ const footerLinks = [
 		</div>
 		<div class="mt-12 border-t border-gray-200/50 pt-8 flex flex-col md:flex-row items-center justify-between gap-6">
 			<div class="flex space-x-6 md:order-2">
-				<a href="#" class="text-text-secondary hover:text-primary"><span class="sr-only">Facebook</span><FacebookIcon /></a>
-				<a href="#" class="text-text-secondary hover:text-primary"><span class="sr-only">Instagram</span><InstagramIcon /></a>
-				<a href={`https://wa.me/${BRAND_WHATSAPP_1.replace(/\s/g, '')}`} target="_blank" rel="noopener noreferrer" class="text-text-secondary hover:text-primary"><span class="sr-only">WhatsApp</span><WhatsappIcon /></a>
-				<a href="#" class="text-text-secondary hover:text-primary"><span class="sr-only">Telegram</span><TelegramIcon /></a>
+				<a href="#" class="text-text-secondary hover:text-primary"><span class="sr-only">{t.common.facebook}</span><FacebookIcon /></a>
+				<a href="#" class="text-text-secondary hover:text-primary"><span class="sr-only">{t.common.instagram}</span><InstagramIcon /></a>
+				<a href={`https://wa.me/${BRAND_WHATSAPP_1.replace(/\s/g, '')}`} target="_blank" rel="noopener noreferrer" class="text-text-secondary hover:text-primary"><span class="sr-only">{t.common.whatsapp}</span><WhatsappIcon /></a>
+				<a href="#" class="text-text-secondary hover:text-primary"><span class="sr-only">{t.common.telegram}</span><TelegramIcon /></a>
 			</div>
 			<div class="md:order-1 flex flex-col sm:flex-row items-center gap-4">
-				<p class="text-center text-base text-text-secondary">&copy; {new Date().getFullYear()} {BRAND_NAME}. {t.footer?.rights ?? 'All rights reserved.'}</p>
+				<p class="center text-base text-text-secondary">&copy; {new Date().getFullYear()} {BRAND_NAME}. {t.footer?.rights ?? 'All rights reserved.'}</p>
 				<div class="relative" id="lang-menu-footer">
 					<button type="button" class="text-text-secondary hover:text-primary flex items-center gap-1 text-sm">
 						<GlobeIcon />
 						<span>{lang.toUpperCase()}</span>
 					</button>
 					<div class="absolute bottom-full right-0 mb-2 w-36 rounded-md shadow-premium bg-white border border-gray-200 hidden" data-lang-panel>
-						<a href={switchLanguagePath(pathname, 'en')} class="block px-4 py-2 text-sm text-text-secondary hover:text-primary">English</a>
-						<a href={switchLanguagePath(pathname, 'pl')} class="block px-4 py-2 text-sm text-text-secondary hover:text-primary">Polski</a>
-						<a href={switchLanguagePath(pathname, 'ru')} class="block px-4 py-2 text-sm text-text-secondary hover:text-primary">Русский</a>
+						<a href={switchLanguagePath(pathname, 'en')} class="block px-4 py-2 text-sm text-text-secondary hover:text-primary">{t.common.english}</a>
+						<a href={switchLanguagePath(pathname, 'pl')} class="block px-4 py-2 text-sm text-text-secondary hover:text-primary">{t.common.polish}</a>
+						<a href={switchLanguagePath(pathname, 'ru')} class="block px-4 py-2 text-sm text-text-secondary hover:text-primary">{t.common.russian}</a>
 					</div>
 				</div>
 			</div>

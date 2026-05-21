@@ -19,9 +19,9 @@ const navLinks = [
 ];
 
 const langOptions = [
-	{ code: 'en', label: 'English' },
-	{ code: 'pl', label: 'Polski' },
-	{ code: 'ru', label: 'Русский' }
+	{ code: 'en', label: t.common.english },
+	{ code: 'pl', label: t.common.polish },
+	{ code: 'ru', label: t.common.russian }
 ] as const;
 
 const accountHref = user ? `${basePath}/dashboard` : `${basePath}/signin`;
