@@ -1,4 +1,4 @@
-import { db } from '../db/client';
+import { db, isDbAvailable } from '../db/client';
 import type { User } from '../types';
 
 const mapUser = (row: any): User => ({
@@ -11,21 +11,25 @@ const mapUser = (row: any): User => ({
 
 export class UserRepository {
     async findByEmail(email: string): Promise<User | undefined> {
+        if (!isDbAvailable || !db) return undefined;
         const row = db.prepare('SELECT * FROM users WHERE email = ?').get(email);
         return row ? mapUser(row) : undefined;
     }
 
     async findById(id: string): Promise<User | undefined> {
+        if (!isDbAvailable || !db) return undefined;
         const row = db.prepare('SELECT * FROM users WHERE id = ?').get(id);
         return row ? mapUser(row) : undefined;
     }
 
     async findAdmin(): Promise<User | undefined> {
+        if (!isDbAvailable || !db) return undefined;
         const row = db.prepare("SELECT * FROM users WHERE role = 'ADMIN' LIMIT 1").get();
         return row ? mapUser(row) : undefined;
     }
 
     async create(user: Omit<User, 'createdAt'>): Promise<User> {
+        if (!isDbAvailable || !db) throw new Error('Database not available');
         const createdAt = Date.now();
         db.prepare(
             'INSERT INTO users (id, email, hashed_password, role, created_at) VALUES (?, ?, ?, ?, ?)'
@@ -38,16 +42,19 @@ export class UserRepository {
     }
 
     findAll(limit = 10) {
+        if (!isDbAvailable || !db) return [];
         return db
             .prepare('SELECT id, email, role, created_at FROM users ORDER BY created_at DESC LIMIT ?')
             .all(limit) as { id: string; email: string; role: string; created_at: number }[];
     }
 
     countAll() {
+        if (!isDbAvailable || !db) return 0;
         return (db.prepare('SELECT COUNT(*) AS count FROM users').get() as { count: number }).count;
     }
 
     updateProfile(userId: string, data: { email?: string; displayName?: string }) {
+        if (!isDbAvailable || !db) return;
         if (data.email) {
             db.prepare('UPDATE users SET email = ? WHERE id = ?').run(data.email, userId);
         }

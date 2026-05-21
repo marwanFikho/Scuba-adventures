@@ -1,7 +1,8 @@
-import { db } from "../db/client";
+import { db, isDbAvailable } from "../db/client";
 
 export class NotificationRepository {
   createNotification(userId: string, message: string) {
+    if (!isDbAvailable || !db) return { id: 'offline' };
     const id = `note_${crypto.randomUUID()}`;
     const createdAt = Date.now();
 

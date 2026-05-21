@@ -1,13 +1,23 @@
 import { Lucia } from "lucia";
 import { BetterSqlite3Adapter } from "@lucia-auth/adapter-sqlite";
-import { db } from "../db/client";
+import { db, isDbAvailable } from "../db/client";
 
-const adapter = new BetterSqlite3Adapter(db, {
+declare module "lucia" {
+	interface Register {
+		Lucia: typeof lucia;
+		DatabaseUserAttributes: {
+			email: string;
+			role: "USER" | "ADMIN";
+		};
+	}
+}
+
+const adapter = isDbAvailable && db ? new BetterSqlite3Adapter(db, {
 	user: "users",
 	session: "sessions"
-});
+}) : null;
 
-export const lucia = new Lucia(adapter, {
+export const lucia = adapter ? new Lucia(adapter, {
 	sessionCookie: {
 		attributes: {
 			secure: import.meta.env.PROD
@@ -19,14 +29,4 @@ export const lucia = new Lucia(adapter, {
 			role: attributes.role
 		};
 	}
-});
-
-declare module "lucia" {
-	interface Register {
-		Lucia: typeof lucia;
-		DatabaseUserAttributes: {
-			email: string;
-			role: "USER" | "ADMIN";
-		};
-	}
-}
+}) : null;

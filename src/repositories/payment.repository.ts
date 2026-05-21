@@ -1,4 +1,4 @@
-import { db } from "../db/client";
+import { db, isDbAvailable } from "../db/client";
 
 export type PaymentRow = {
 	id: string;
@@ -11,6 +11,7 @@ export type PaymentRow = {
 
 export class PaymentRepository {
 	createPayment(bookingId: string, stripePaymentIntentId: string, amount: number, status: string) {
+		if (!isDbAvailable || !db) throw new Error('Database not available');
 		const id = `pay_${crypto.randomUUID()}`;
 		const createdAt = Date.now();
 
@@ -22,6 +23,7 @@ export class PaymentRepository {
 	}
 
 	findByUserId(userId: string): PaymentRow[] {
+		if (!isDbAvailable || !db) return [];
 		return db
 			.prepare(
 				`SELECT p.*
@@ -34,6 +36,7 @@ export class PaymentRepository {
 	}
 
 	getTotalRevenue() {
+		if (!isDbAvailable || !db) return 0;
 		const row = db
 			.prepare(
 				"SELECT COALESCE(SUM(amount), 0) AS total FROM payments WHERE status IN ('paid', 'reserved')"

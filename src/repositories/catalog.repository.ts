@@ -1,4 +1,5 @@
-import { db } from "../db/client";
+import { db, isDbAvailable } from "../db/client";
+import { courses as mockCourses, trips as mockTrips, specialties as mockSpecialties } from "../lib/mock-data";
 
 export type CourseRow = {
 	id: string;
@@ -44,8 +45,46 @@ export type GalleryRow = {
 	created_at: number;
 };
 
+const mapCourse = (c: typeof mockCourses[0]): CourseRow => ({
+	id: c.id,
+	title: c.title,
+	description: c.shortDescription,
+	short_description: c.shortDescription,
+	long_description: c.longDescription,
+	price: c.price,
+	duration: c.durationDays,
+	difficulty: c.difficulty,
+	seats: c.seats,
+	certification: c.certification,
+	instructor_id: null,
+	image_url: c.image,
+	next_start: c.nextStart,
+	created_at: Date.now(),
+	instructor_name: c.instructor
+});
+
+const mapTrip = (t: typeof mockTrips[0]): TripRow => ({
+	id: t.id,
+	title: t.title,
+	description: t.description,
+	price: t.price,
+	duration: t.durationDays,
+	seats: t.seats,
+	destination: t.destination,
+	departure_date: t.departureDate,
+	image_url: t.image,
+	created_at: Date.now()
+});
+
+const mapSpecialty = (s: typeof mockSpecialties[0]): SpecialtyRow => ({
+	id: s.id,
+	title: s.title,
+	description: s.description
+});
+
 export class CatalogRepository {
 	findAllInstructors() {
+		if (!isDbAvailable || !db) return [];
 		return db.prepare("SELECT id, name FROM instructors ORDER BY name ASC").all() as {
 			id: string;
 			name: string;
@@ -53,6 +92,7 @@ export class CatalogRepository {
 	}
 
 	findAllCourses(): CourseRow[] {
+		if (!isDbAvailable || !db) return mockCourses.map(mapCourse);
 		return db
 			.prepare(
 				`SELECT c.*, i.name AS instructor_name
@@ -64,6 +104,7 @@ export class CatalogRepository {
 	}
 
 	findCourseById(id: string): CourseRow | undefined {
+		if (!isDbAvailable || !db) return mockCourses.find(c => c.id === id) ? mapCourse(mockCourses.find(c => c.id === id)!) : undefined;
 		return db
 			.prepare(
 				`SELECT c.*, i.name AS instructor_name
@@ -75,6 +116,7 @@ export class CatalogRepository {
 	}
 
 	createCourse(data: Omit<CourseRow, "created_at" | "instructor_name">) {
+		if (!isDbAvailable || !db) return;
 		db.prepare(
 			`INSERT INTO courses
 			 (id, title, description, short_description, long_description, price, duration, difficulty, seats, certification, instructor_id, image_url, next_start, created_at)
@@ -101,6 +143,7 @@ export class CatalogRepository {
 		id: string,
 		data: Partial<Omit<CourseRow, "id" | "created_at" | "instructor_name">>
 	) {
+		if (!isDbAvailable || !db) return;
 		const fields: string[] = [];
 		const values: unknown[] = [];
 
@@ -132,18 +175,25 @@ export class CatalogRepository {
 	}
 
 	deleteCourse(id: string) {
+		if (!isDbAvailable || !db) return;
 		db.prepare("DELETE FROM courses WHERE id = ?").run(id);
 	}
 
 	findAllTrips(): TripRow[] {
+		if (!isDbAvailable || !db) return mockTrips.map(mapTrip);
 		return db.prepare("SELECT * FROM trips ORDER BY departure_date ASC").all() as TripRow[];
 	}
 
 	findTripById(id: string): TripRow | undefined {
+		if (!isDbAvailable || !db) {
+			const t = mockTrips.find(t => t.id === id);
+			return t ? mapTrip(t) : undefined;
+		}
 		return db.prepare("SELECT * FROM trips WHERE id = ?").get(id) as TripRow | undefined;
 	}
 
 	createTrip(data: Omit<TripRow, "created_at">) {
+		if (!isDbAvailable || !db) return;
 		db.prepare(
 			`INSERT INTO trips
 			 (id, title, description, price, duration, seats, destination, departure_date, image_url, created_at)
@@ -163,6 +213,7 @@ export class CatalogRepository {
 	}
 
 	updateTrip(id: string, data: Partial<Omit<TripRow, "id" | "created_at">>) {
+		if (!isDbAvailable || !db) return;
 		const fields: string[] = [];
 		const values: unknown[] = [];
 		const map: Record<string, unknown> = {
@@ -189,14 +240,17 @@ export class CatalogRepository {
 	}
 
 	deleteTrip(id: string) {
+		if (!isDbAvailable || !db) return;
 		db.prepare("DELETE FROM trips WHERE id = ?").run(id);
 	}
 
 	findAllSpecialties(): SpecialtyRow[] {
+		if (!isDbAvailable || !db) return mockSpecialties.map(mapSpecialty);
 		return db.prepare("SELECT * FROM specialties ORDER BY title ASC").all() as SpecialtyRow[];
 	}
 
 	createSpecialty(data: SpecialtyRow) {
+		if (!isDbAvailable || !db) return;
 		db.prepare("INSERT INTO specialties (id, title, description) VALUES (?, ?, ?)").run(
 			data.id,
 			data.title,
@@ -205,18 +259,22 @@ export class CatalogRepository {
 	}
 
 	updateSpecialty(id: string, title: string, description: string) {
+		if (!isDbAvailable || !db) return;
 		db.prepare("UPDATE specialties SET title = ?, description = ? WHERE id = ?").run(title, description, id);
 	}
 
 	deleteSpecialty(id: string) {
+		if (!isDbAvailable || !db) return;
 		db.prepare("DELETE FROM specialties WHERE id = ?").run(id);
 	}
 
 	findAllGallery(): GalleryRow[] {
+		if (!isDbAvailable || !db) return [];
 		return db.prepare("SELECT * FROM gallery ORDER BY created_at DESC").all() as GalleryRow[];
 	}
 
 	createGalleryItem(data: Omit<GalleryRow, "created_at">) {
+		if (!isDbAvailable || !db) return;
 		db.prepare("INSERT INTO gallery (id, image_url, title, created_at) VALUES (?, ?, ?, ?)").run(
 			data.id,
 			data.image_url,
@@ -226,10 +284,12 @@ export class CatalogRepository {
 	}
 
 	deleteGalleryItem(id: string) {
+		if (!isDbAvailable || !db) return;
 		db.prepare("DELETE FROM gallery WHERE id = ?").run(id);
 	}
 
 	decrementSeats(itemType: "course" | "trip", itemId: string) {
+		if (!isDbAvailable || !db) return;
 		if (itemType === "course") {
 			db.prepare("UPDATE courses SET seats = MAX(seats - 1, 0) WHERE id = ?").run(itemId);
 			return;
@@ -238,18 +298,22 @@ export class CatalogRepository {
 	}
 
 	updateCourseSeats(id: string, seats: number) {
+		if (!isDbAvailable || !db) return;
 		db.prepare("UPDATE courses SET seats = ? WHERE id = ?").run(seats, id);
 	}
 
 	updateTripSeats(id: string, seats: number) {
+		if (!isDbAvailable || !db) return;
 		db.prepare("UPDATE trips SET seats = ? WHERE id = ?").run(seats, id);
 	}
 
 	countCourses() {
+		if (!isDbAvailable || !db) return mockCourses.length;
 		return (db.prepare("SELECT COUNT(*) AS count FROM courses").get() as { count: number }).count;
 	}
 
 	countTrips() {
+		if (!isDbAvailable || !db) return mockTrips.length;
 		return (db.prepare("SELECT COUNT(*) AS count FROM trips").get() as { count: number }).count;
 	}
 }
