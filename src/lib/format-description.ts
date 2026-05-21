@@ -49,7 +49,7 @@ export function formatDescription(text: string): string {
         result.push('</ul>');
         inList = false;
       }
-      result.push(`<h3 class="description-heading">${escapeHtml(line)}</h3>`);
+      result.push(`<h3 class="description-heading">${formatInline(escapeHtml(line), knownItalics)}</h3>`);
     } else if (isListLike) {
       if (!inList) {
         result.push('<ul class="description-list">');
@@ -83,6 +83,10 @@ function escapeHtml(text: string): string {
 
 function formatInline(text: string, knownItalics: string[]): string {
   let result = text;
+
+  result = result.replace(/\*\*(.+?)\*\*/g, '<strong class="highlight-text">$1</strong>');
+  result = result.replace(/\*(.+?)\*/g, '<em class="italic-term">$1</em>');
+
   for (const phrase of knownItalics) {
     const escaped = phrase.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     result = result.replace(

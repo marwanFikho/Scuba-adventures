@@ -3,6 +3,7 @@
     "home": "Главная",
     "courses": "Курсы",
     "specialties": "Специализации",
+    "adventure": "Недельное Приключение",
     "contact": "Контакты",
     "signIn": "Войти",
     "signUp": "Регистрация",
@@ -33,8 +34,6 @@
   "footer": {
     "navigation": "Навигация",
     "contact": "Контакты",
-    "newsletter": "Рассылка",
-    "newsletterText": "Новости о курсах и поездках.",
     "rights": "Все права защищены."
   },
   "auth": {

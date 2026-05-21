@@ -16,13 +16,14 @@ const footerLinks = [
 	{ href: `${basePath}/`, text: t.nav.home },
 	{ href: `${basePath}/courses`, text: t.nav.courses },
 	{ href: `${basePath}/specialties`, text: t.nav.specialties },
+	{ href: `${basePath}/one-week-adventure`, text: t.nav.adventure },
 	{ href: `${basePath}/contact`, text: t.nav.contact }
 ];
 ---
 
 <footer class="bg-surface border-t border-gray-200/50">
 	<div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-		<div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+		<div class="grid grid-cols-2 md:grid-cols-2 gap-8">
 			<div class="space-y-4">
 				<h3 class="text-sm font-semibold text-text-secondary tracking-wider uppercase">{t.footer?.navigation ?? 'Navigation'}</h3>
 				<ul class="space-y-2">
@@ -37,10 +38,6 @@ const footerLinks = [
 					<li><a href={`https://wa.me/${BRAND_WHATSAPP_1.replace(/\s/g, '')}`} target="_blank" rel="noopener noreferrer" class="text-base text-text-secondary hover:text-primary transition-colors">WhatsApp: {BRAND_WHATSAPP_1}</a></li>
 					<li><a href={`https://wa.me/${BRAND_WHATSAPP_2.replace(/\s/g, '')}`} target="_blank" rel="noopener noreferrer" class="text-base text-text-secondary hover:text-primary transition-colors">WhatsApp: {BRAND_WHATSAPP_2}</a></li>
 				</ul>
-			</div>
-			<div class="space-y-4">
-				<h3 class="text-sm font-semibold text-text-secondary tracking-wider uppercase">{t.footer?.newsletter ?? 'Newsletter'}</h3>
-				<p class="text-base text-text-secondary">{t.footer?.newsletterText ?? 'Stay up to date with courses and dive trips.'}</p>
 			</div>
 		</div>
 		<div class="mt-12 border-t border-gray-200/50 pt-8 flex flex-col md:flex-row items-center justify-between gap-6">

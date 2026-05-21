@@ -3,6 +3,7 @@
     "home": "Strona główna",
     "courses": "Kursy",
     "specialties": "Specjalizacje",
+    "adventure": "Jednotygodniowa Przygoda",
     "contact": "Kontakt",
     "signIn": "Zaloguj się",
     "signUp": "Zarejestruj się",
@@ -33,8 +34,6 @@
   "footer": {
     "navigation": "Nawigacja",
     "contact": "Kontakt",
-    "newsletter": "Newsletter",
-    "newsletterText": "Bądź na bieżąco z kursami i wyjazdami.",
     "rights": "Wszelkie prawa zastrzeżone."
   },
   "auth": {

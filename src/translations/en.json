@@ -3,6 +3,7 @@
     "home": "Home",
     "courses": "Courses",
     "specialties": "Specialties",
+    "adventure": "One Week Adventure",
     "contact": "Contact Us",
     "signIn": "Sign In",
     "signUp": "Sign Up",
@@ -33,8 +34,6 @@
   "footer": {
     "navigation": "Navigation",
     "contact": "Contact",
-    "newsletter": "Newsletter",
-    "newsletterText": "Stay up to date with our latest courses and dive trips.",
     "rights": "All rights reserved."
   },
   "auth": {
