@@ -12,7 +12,7 @@ const overrides = await contentRepository.getOverrides(lang);
 const overridesJson = JSON.stringify(overrides);
 ---
 
-<script id="ie-data" type="application/json">{overridesJson}</script>
+<div id="ie-data" aria-hidden="true" style="display:none">{overridesJson}</div>
 
 {isAdmin && (
   <div id="inline-editor-bar" class="fixed bottom-4 right-4 z-[9999] flex items-center gap-2">
@@ -153,10 +153,10 @@ const overridesJson = JSON.stringify(overrides);
 
     // ---- Apply overrides from embedded JSON (synchronous, no flash) ----
     function applyOverrides() {
-      var script = document.getElementById('ie-data');
-      if (!script) return;
+      var el = document.getElementById('ie-data');
+      if (!el) return;
       try {
-        var overrides = JSON.parse(script.textContent);
+        var overrides = JSON.parse(el.textContent);
         var all = document.querySelectorAll('body *');
         for (var i = 0; i < all.length; i++) {
           var el = all[i];
@@ -167,7 +167,7 @@ const overridesJson = JSON.stringify(overrides);
             el.innerHTML = overrides[key];
           }
         }
-      } catch {}
+      } catch (e) { console.error('applyOverrides', e); }
     }
 
     // ---- Edit mode ----
@@ -216,10 +216,7 @@ const overridesJson = JSON.stringify(overrides);
       if (keyLabel) keyLabel.textContent = 'Editing';
       if (pathLabel) pathLabel.textContent = key;
 
-      var html = el.innerHTML;
-      var tmp = document.createElement('div');
-      tmp.innerHTML = html;
-      if (textarea) textarea.value = tmp.textContent || html;
+      if (textarea) textarea.value = el.innerHTML;
       if (modal) modal.showModal();
     }
 
@@ -244,8 +241,12 @@ const overridesJson = JSON.stringify(overrides);
           currentEl.innerHTML = newValue;
           showSaved();
           closeModal();
+        } else {
+          var errBody = await res.text();
+          console.error('saveEdit: server returned', res.status, errBody);
+          if (keyLabel) keyLabel.textContent = 'Save failed (' + res.status + ')';
         }
-      } catch {}
+      } catch (e) { console.error('saveEdit: fetch error', e); if (keyLabel) keyLabel.textContent = 'Save error'; }
     }
 
     function closeModal() {

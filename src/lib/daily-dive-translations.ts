@@ -18,6 +18,9 @@ type DailyDiveTranslations = {
     includedItems: string[];
     excluded: string;
     excludedItems: string[];
+    priceLabel: string;
+    price: string;
+    priceNote: string;
     refundPolicy: string;
     refundIntro: string;
     refundItems: string[];
@@ -88,6 +91,9 @@ Return & Drop-off (4:00-5:00 PM): Head back to the marina before your transfer r
       "Tips for crew and guide (optional)",
       "Diving camera rental (€20/day)"
     ],
+    priceLabel: "Price",
+    price: "€75.00 per person",
+    priceNote: "Only inside Hurghada (For Safaga or Marsa Alam Contact Us)",
     refundPolicy: "Cancellation & Refund Policy",
     refundIntro: "We want you to focus on the fun and adventure – not on payment worries. Your booking is secure.",
     refundItems: [
@@ -415,6 +421,9 @@ Powrót i drop-off (16:00-17:00): Wróć do mariny, zanim transfer odwiezie Cię
       "Napiwki dla załogi i przewodnika (opcjonalne)",
       "Wynajem kamery nurkowej (20 €/dzień)"
     ],
+    priceLabel: "Cena",
+    price: "75,00 € od osoby",
+    priceNote: "Tylko w Hurghadzie, Safadze, Marsa Alam",
     refundPolicy: "Polityka anulowania i zwrotu",
     refundIntro: "Chcemy, abyś skupił się na zabawie i przygodzie – nie na płatnościach. Twoja rezerwacja jest bezpieczna.",
     refundItems: [
@@ -526,6 +535,9 @@ const dailyDiveRU: DailyDiveTranslations = {
       "Чаевые экипажу и гиду (по желанию)",
       "Аренда дайверской камеры (20 €/день)"
     ],
+    priceLabel: "Цена",
+    price: "75,00 € с человека",
+    priceNote: "Только в Хургаде, Сафаге, Марса Алам",
     refundPolicy: "Политика отмены и возврата",
     refundIntro: "Мы хотим, чтобы вы сосредоточились на веселье и приключениях – а не на платежах. Ваше бронирование защищено.",
     refundItems: [

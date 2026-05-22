@@ -57,7 +57,9 @@ const discoverDiving = {
     "Сменная одежда для после погружения"
   ],
   bookNow: "Забронировать Место",
+  priceLabel: "Цена",
   price: "45,00€ за человека",
+  priceNote: "Бесплатный трансфер из отелей Хургады включен",
   duration: "1 День (2 погружения)"
 };
 ---
@@ -101,6 +103,13 @@ const discoverDiving = {
             </ul>
           </div>
         </div>
+
+        <!-- Price -->
+        <div class="bg-accent/10 border border-accent/30 rounded-lg p-4 sm:p-6 text-center">
+          <h3 class="text-lg sm:text-xl font-bold text-primary mb-1">{discoverDiving.priceLabel}</h3>
+          <p class="text-2xl sm:text-3xl font-bold text-accent mb-1">{discoverDiving.price}</p>
+          <p class="text-sm text-text-secondary">{discoverDiving.priceNote}</p>
+        </div>
       </div>
 
       <div class="mb-8 sm:mb-16" data-animate="fade-up">
@@ -136,13 +145,6 @@ const discoverDiving = {
               </li>
             ))}
           </ul>
-        </div>
-      </div>
-
-      <div class="mb-8 sm:mb-16" data-animate="fade-up">
-        <div class="flex flex-col items-center">
-          <span class="text-text-secondary text-sm mb-2" data-i18n-key="discover-diving.price">{discoverDiving.price}</span>
-          <span class="text-text-secondary text-sm" data-i18n-key="discover-diving.duration">{discoverDiving.duration}</span>
         </div>
       </div>
 
