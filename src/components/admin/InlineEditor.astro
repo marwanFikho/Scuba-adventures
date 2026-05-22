@@ -5,7 +5,14 @@ export interface Props {
 }
 
 const { lang, isAdmin } = Astro.props;
+
+// Fetch overrides during SSR so they're in the HTML from the start — no flash
+import { contentRepository } from '../../repositories/content.repository';
+const overrides = await contentRepository.getOverrides(lang);
+const overridesJson = JSON.stringify(overrides);
 ---
+
+<script id="ie-data" type="application/json">{overridesJson}</script>
 
 {isAdmin && (
   <div id="inline-editor-bar" class="fixed bottom-4 right-4 z-[9999] flex items-center gap-2">
@@ -60,8 +67,9 @@ const { lang, isAdmin } = Astro.props;
   </div>
 </dialog>
 
-{isAdmin && (
-  <script define:vars={{ lang }}>
+<script>
+  (function() {
+    var lang = document.documentElement.lang || 'en';
     var editMode = false;
     var currentEl = null;
 
@@ -78,8 +86,34 @@ const { lang, isAdmin } = Astro.props;
     var cancelBtn = document.getElementById('ie-cancel');
     var closeBtn = document.getElementById('ie-close');
 
-    // Cache of all editable elements and their CSS paths (rebuilt each time edit mode enters)
-    var editableElements = [];
+    function isIn(el, selector) {
+      while (el) {
+        if (el.matches && el.matches(selector)) return true;
+        el = el.parentElement;
+      }
+      return false;
+    }
+
+    function shouldSkip(el) {
+      var tag = el.tagName.toLowerCase();
+      if (['script', 'style', 'svg', 'input', 'textarea', 'select', 'img', 'video', 'canvas', 'br', 'hr', 'iframe', 'noscript', 'template'].indexOf(tag) !== -1) return true;
+      if (el.isContentEditable) return true;
+      if (el.getAttribute && el.getAttribute('contenteditable') === 'true') return true;
+      if (isIn(el, '#inline-editor-bar')) return true;
+      if (isIn(el, '#ie-modal')) return true;
+      return false;
+    }
+
+    function hasDirectText(el) {
+      var children = el.childNodes;
+      for (var i = 0; i < children.length; i++) {
+        if (children[i].nodeType === 3) {
+          var text = children[i].textContent.trim();
+          if (text.length > 0) return true;
+        }
+      }
+      return false;
+    }
 
     function getCssPath(el) {
       var path = [];
@@ -102,49 +136,13 @@ const { lang, isAdmin } = Astro.props;
       return path.join(' > ');
     }
 
-    function isIn(el, selector) {
-      while (el) {
-        if (el.matches && el.matches(selector)) return true;
-        el = el.parentElement;
-      }
-      return false;
-    }
-
-    function shouldSkip(el) {
-      var tag = el.tagName.toLowerCase();
-      if (['script', 'style', 'svg', 'input', 'textarea', 'select', 'img', 'video', 'canvas', 'br', 'hr', 'iframe', 'noscript', 'template'].indexOf(tag) !== -1) return true;
-      if (el.isContentEditable) return true;
-      if (el.getAttribute && el.getAttribute('contenteditable') === 'true') return true;
-      // Skip editor's own UI elements
-      if (isIn(el, '#inline-editor-bar')) return true;
-      if (isIn(el, '#ie-modal')) return true;
-      if (isIn(el, '#ie-modal + .backdrop')) return true;
-      return false;
-    }
-
-    function hasDirectText(el) {
-      var children = el.childNodes;
-      for (var i = 0; i < children.length; i++) {
-        if (children[i].nodeType === 3) {
-          var text = children[i].textContent.trim();
-          if (text.length > 0) return true;
-        }
-      }
-      return false;
-    }
-
-    function getEffectiveText(el) {
-      return el.innerHTML;
-    }
-
     function getPageKey() {
       var path = window.location.pathname.replace(/^\/(en|pl|ru)\/?/, '') || 'home';
       return path.replace(/\/$/, '') || 'home';
     }
 
     function makeStorageKey(el) {
-      var cssPath = getCssPath(el);
-      return 'p:' + getPageKey() + '::' + cssPath;
+      return 'p:' + getPageKey() + '::' + getCssPath(el);
     }
 
     function showSaved() {
@@ -153,14 +151,12 @@ const { lang, isAdmin } = Astro.props;
       setTimeout(function() { saveIndicator.classList.add('hidden'); }, 2000);
     }
 
-    // ---- Apply saved overrides on page load ----
-    async function applyOverrides() {
+    // ---- Apply overrides from embedded JSON (synchronous, no flash) ----
+    function applyOverrides() {
+      var script = document.getElementById('ie-data');
+      if (!script) return;
       try {
-        var res = await fetch('/api/content?lang=' + lang);
-        var overrides = await res.json();
-        if (!overrides || Object.keys(overrides).length === 0) return;
-
-        // Walk all text elements and match by CSS path
+        var overrides = JSON.parse(script.textContent);
         var all = document.querySelectorAll('body *');
         for (var i = 0; i < all.length; i++) {
           var el = all[i];
@@ -182,16 +178,13 @@ const { lang, isAdmin } = Astro.props;
       if (checkIcon) checkIcon.classList.remove('hidden');
       if (editLabel) editLabel.textContent = 'Done';
 
-      editableElements = [];
       var all = document.querySelectorAll('body *');
       for (var i = 0; i < all.length; i++) {
         var el = all[i];
         if (shouldSkip(el)) continue;
         if (!hasDirectText(el)) continue;
-
         el.classList.add('ie-editing');
         el.addEventListener('click', handleClick);
-        editableElements.push(el);
       }
     }
 
@@ -202,13 +195,12 @@ const { lang, isAdmin } = Astro.props;
       if (checkIcon) checkIcon.classList.add('hidden');
       if (editLabel) editLabel.textContent = 'Edit';
 
-      for (var i = 0; i < editableElements.length; i++) {
-        var el = editableElements[i];
+      var all = document.querySelectorAll('body *');
+      for (var i = 0; i < all.length; i++) {
+        var el = all[i];
         el.classList.remove('ie-editing', 'ie-editing-focus');
         el.removeEventListener('click', handleClick);
       }
-      editableElements = [];
-
       if (modal && modal.hasAttribute('open')) closeModal();
     }
 
@@ -225,7 +217,6 @@ const { lang, isAdmin } = Astro.props;
       if (pathLabel) pathLabel.textContent = key;
 
       var html = el.innerHTML;
-      // Decode entities
       var tmp = document.createElement('div');
       tmp.innerHTML = html;
       if (textarea) textarea.value = tmp.textContent || html;
@@ -249,7 +240,6 @@ const { lang, isAdmin } = Astro.props;
             value: newValue
           })
         });
-
         if (res.ok) {
           currentEl.innerHTML = newValue;
           showSaved();
@@ -263,7 +253,6 @@ const { lang, isAdmin } = Astro.props;
       currentEl = null;
     }
 
-    // ---- Event wiring ----
     if (toggleBtn) {
       toggleBtn.addEventListener('click', function() {
         if (editMode) exitEditMode();
@@ -297,6 +286,7 @@ const { lang, isAdmin } = Astro.props;
       });
     }
 
+    // Run immediately — data is already in the HTML
     applyOverrides();
-  </script>
-)}
+  })();
+</script>
