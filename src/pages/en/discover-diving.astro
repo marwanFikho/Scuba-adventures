@@ -1,0 +1,170 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import { getTranslations, getLangFromPathname } from '../../lib/i18n';
+
+const lang = getLangFromPathname(Astro.url.pathname);
+const t = getTranslations(lang);
+
+const discoverDiving = {
+  title: "Discover Scuba Diving",
+  subtitle: "1 Day Experience",
+  description: `Have you ever wondered what it feels like to breathe underwater like a fish, to feel weightless and at one with the beauty of the underwater world? Then this immersion is for you! A first dive is the best way to discover this incredible experience before committing to make courses like Open Water Diver.
+
+Join a fully qualified team on this scuba diving experience to explore the beauty of the Red Sea. Stop at two dive spots, learn some scuba basics with provided equipment, under the watch of professional instructors to discover spectacular corals and marine life. Between your two dives, enjoy buffet lunch on the boat and have time to relax before the second dive. (swim and snorkel are possible)
+
+More details: A car or mini van will pick you up in any hotel in Hurghada between 08:00am and 08:30am. (For Makadi/Shahl Hasheesh/El Gouna hotel the time will be communicated depending on the hotel location)`,
+  itinerary: `Daily Schedule
+
+Morning Pickup (8:00-8:30 AM): Comfortable, air-conditioned transfer from your hotel.
+
+Marina Departure (~9:00 AM): Board our boat, meet your guide, and enjoy a briefing over tea or coffee.
+
+First Dive (~10:00 AM): Dive one of the beautiful Red Sea sites.
+
+Surface Interval & Lunch: Relax on the sundeck, enjoy snacks and drinks, and savor a freshly prepared buffet lunch as we cruise to the next site.
+
+Second Dive (~1:30 PM): Explore a different reef profile, encountering new marine landscapes and life.
+
+Return & Drop-off (4:00-5:00 PM): Head back to the marina before your transfer returns you to your hotel.`,
+  included: "What's Included",
+  includedItems: [
+    "Free transfer from all hotels within Hurghada",
+    "Lunch, soft drinks/hot drinks",
+    "Use of snorkelling equipment",
+    "2 dives",
+    "Professional instructors",
+    "All necessary scuba equipment"
+  ],
+  excluded: "Not Included",
+  excludedItems: [
+    "Transfer from El Gouna, Sahl Hasheesh and Makadi Bay: €15",
+    "Personal expenses",
+    "Optional underwater photography/videography"
+  ],
+  refundPolicy: "Cancellation & Refund Policy",
+  refundIntro: "We want you to focus on the fun and adventure – not on payment worries. Your booking is secure.",
+  refundItems: [
+    "More than 24 hours before departure: 100% refund",
+    "Less than 24 hours before departure: No refund",
+    "Weather-related cancellations: Full refund or free rebooking"
+  ],
+  whatToBring: "What to Bring",
+  whatToBringItems: [
+    "Copy of a valid passport",
+    "Medical statement from your doctor stating you are fit to dive",
+    "Towel and swimwear",
+    "Sunscreen and hat",
+    "Change of clothes for after the dive"
+  ],
+  bookNow: "Reserve Your Spot",
+  price: "€45.00 per person",
+  duration: "1 Day (2 dives)"
+};
+---
+<MainLayout title={discoverDiving.title} description={discoverDiving.subtitle}>
+  <section class="pt-24 sm:pt-28 pb-12 sm:pb-16 bg-background">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8 sm:mb-16" data-animate="fade-up">
+        <h1 class="text-3xl sm:text-5xl font-bold text-primary mb-4">{discoverDiving.title}</h1>
+        <p class="text-base sm:text-xl text-text-secondary max-w-3xl mx-auto">{discoverDiving.subtitle}</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 mb-8 sm:mb-16" data-animate="fade-up">
+        <div>
+          <div class="prose prose-sm max-w-none mb-8">
+            {discoverDiving.description.split('\n\n').map((paragraph) => (
+              <p class="text-text-secondary mb-4 leading-relaxed">{paragraph}</p>
+            ))}
+          </div>
+        </div>
+        <div class="space-y-6">
+          <div class="bg-surface border border-gray-200/50 rounded-lg p-4 sm:p-6">
+            <h3 class="text-lg sm:text-xl font-bold text-primary mb-4">{discoverDiving.included}</h3>
+            <ul class="space-y-2">
+              {discoverDiving.includedItems.map((item) => (
+                <li class="flex items-start gap-2 text-text-secondary text-sm">
+                  <span class="text-accent font-bold flex-shrink-0">✓</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="bg-surface border border-gray-200/50 rounded-lg p-4 sm:p-6">
+            <h3 class="text-lg sm:text-xl font-bold text-primary mb-4">{discoverDiving.excluded}</h3>
+            <ul class="space-y-2">
+              {discoverDiving.excludedItems.map((item) => (
+                <li class="flex items-start gap-2 text-text-secondary text-sm">
+                  <span class="text-red-500 font-bold flex-shrink-0">−</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-8 sm:mb-16" data-animate="fade-up">
+        <h2 class="text-2xl sm:text-3xl font-bold text-primary mb-6 text-center">Daily Schedule</h2>
+        <div class="max-w-3xl mx-auto">
+          {discoverDiving.itinerary.split('\n\n').map((paragraph) => (
+            <p class="text-text-secondary mb-3 leading-relaxed">{paragraph}</p>
+          ))}
+        </div>
+      </div>
+
+      <div class="mb-8 sm:mb-16 bg-surface border border-gray-200/50 rounded-lg p-4 sm:p-8" data-animate="fade-up">
+        <h2 class="text-2xl sm:text-3xl font-bold text-primary mb-6">{discoverDiving.refundPolicy}</h2>
+        <p class="text-text-secondary mb-4">{discoverDiving.refundIntro}</p>
+        <ul class="space-y-2 ml-4">
+          {discoverDiving.refundItems.map((item) => (
+            <li class="flex items-start gap-2 text-text-secondary">
+              <span class="text-accent flex-shrink-0">•</span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="mb-8 sm:mb-16" data-animate="fade-up">
+        <h2 class="text-2xl sm:text-3xl font-bold text-primary mb-6 text-center">{discoverDiving.whatToBring}</h2>
+        <div class="max-w-3xl mx-auto">
+          <ul class="space-y-2 ml-4">
+            {discoverDiving.whatToBringItems.map((item) => (
+              <li class="flex items-start gap-2 text-text-secondary">
+                <span class="text-accent flex-shrink-0">✓</span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <div class="mb-8 sm:mb-16" data-animate="fade-up">
+        <div class="flex flex-col items-center">
+          <span class="text-text-secondary text-sm mb-2">{discoverDiving.price}</span>
+          <span class="text-text-secondary text-sm">{discoverDiving.duration}</span>
+        </div>
+      </div>
+
+      <div class="mb-12 sm:mb-20" data-animate="fade-up">
+        <h2 class="text-2xl sm:text-3xl font-bold text-primary mb-6 text-center">What to Expect</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          <img src="/images/discover-diving/Monprojet-13.jpg" alt="Discover Scuba Diving - Main view" class="w-full h-48 object-cover rounded-lg shadow-sm" loading="lazy" />
+          <img src="/images/discover-diving/1.png" alt="Discover Scuba Diving - Equipment" class="w-full h-48 object-cover rounded-lg shadow-sm" loading="lazy" />
+          <img src="/images/discover-diving/5.png" alt="Discover Scuba Diving - Underwater view" class="w-full h-48 object-cover rounded-lg shadow-sm" loading="lazy" />
+          <img src="/images/discover-diving/Monprojet-12.jpg" alt="Discover Scuba Diving - Boat" class="w-full h-48 object-cover rounded-lg shadow-sm" loading="lazy" />
+          <img src="/images/discover-diving/2.png" alt="Discover Scuba Diving - Coral reef" class="w-full h-48 object-cover rounded-lg shadow-sm" loading="lazy" />
+          <img src="/images/discover-diving/3.png" alt="Discover Scuba Diving - Marine life" class="w-full h-48 object-cover rounded-lg shadow-sm" loading="lazy" />
+          <img src="/images/discover-diving/4.png" alt="Discover Scuba Diving - Instructor" class="w-full h-48 object-cover rounded-lg shadow-sm" loading="lazy" />
+          <img src="/images/discover-diving/6.png" alt="Discover Scuba Diving - Group dive" class="w-full h-48 object-cover rounded-lg shadow-sm" loading="lazy" />
+        </div>
+      </div>
+
+      <div class="text-center py-4" data-animate="fade-up">
+        <a href={`/${lang}/contact`} class="inline-block bg-secondary text-white px-6 sm:px-8 py-3 sm:py-4 rounded-md font-semibold hover:bg-ocean-muted transition-colors text-base sm:text-lg w-full sm:w-auto">
+          {discoverDiving.bookNow}
+        </a>
+      </div>
+    </div>
+  </section>
+</MainLayout>

@@ -404,7 +404,7 @@ Strong currents make this safari suitable only for experienced divers.`,
 Known for **hammerhead sharks**, **reef sharks**, and enormous schools of fish.
 
 **Anemon City**, with its huge colonies of anemones, is particularly impressive.`,
-          image: "/images/adventures/elphinstone.png"
+          image: "/images/adventures/Daedalus Reef.jpeg"
         },
         {
           name: "Elphinstone",
@@ -799,7 +799,8 @@ Silne prądy sprawiają, że to safari jest odpowiednie tylko dla doświadczonyc
 Znana z **rekinów młotów**, **rekinów rafowych** i ogromnych ławic ryb.
 
 **Anemon City**, z ogromnymi koloniami ukwiałów, jest szczególnie imponujące.`,
-          image: "/images/adventures/elphinstone.png"
+          image: "/images/adventures/Daedalus Reef.jpeg"
+
         },
         {
           name: "Elphinstone",
@@ -1194,7 +1195,8 @@ Elphinstone знаменит своими нетронутыми коралло�
 Известен **акулами-молотами**, **рифовыми акулами** и огромными косяками рыб.
 
 **Anemon City** с огромными колониями анемонов особенно впечатляет.`,
-          image: "/images/adventures/elphinstone.png"
+          image: "/images/adventures/Daedalus Reef.jpeg"
+
         },
         {
           name: "Elphinstone",

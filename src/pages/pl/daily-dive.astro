@@ -11,12 +11,153 @@ const { page, locations } = dailyDive;
 ---
 
 <MainLayout title={page.title} description={page.subtitle}>
-  <section class="pt-28 pb-16 bg-background">
+  <section class="pt-24 sm:pt-28 pb-12 sm:pb-16 bg-background">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16" data-animate="fade-up">
-        <h1 class="text-5xl font-bold text-primary mb-4">{page.title}</h1>
-        <p class="text-xl text-text-secondary max-w-3xl mx-auto">{page.subtitle}</p>
+      <div class="text-center mb-8 sm:mb-16" data-animate="fade-up">
+        <h1 class="text-3xl sm:text-5xl font-bold text-primary mb-4">{page.title}</h1>
+        <p class="text-base sm:text-xl text-text-secondary max-w-3xl mx-auto">{page.subtitle}</p>
       </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 mb-8 sm:mb-16" data-animate="fade-up">
+        <div>
+          <div class="prose prose-sm max-w-none mb-8">
+            {page.description.split('\n\n').map((paragraph) => (
+              <p class="text-text-secondary mb-4 leading-relaxed">{paragraph}</p>
+            ))}
+          </div>
+        </div>
+        <div class="space-y-6">
+          <div class="bg-surface border border-gray-200/50 rounded-lg p-4 sm:p-6">
+            <h3 class="text-lg sm:text-xl font-bold text-primary mb-4">{page.included}</h3>
+            <ul class="space-y-2">
+              {page.includedItems.map((item) => (
+                <li class="flex items-start gap-2 text-text-secondary text-sm">
+                  <span class="text-accent font-bold flex-shrink-0">✓</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="bg-surface border border-gray-200/50 rounded-lg p-4 sm:p-6">
+            <h3 class="text-lg sm:text-xl font-bold text-primary mb-4">{page.excluded}</h3>
+            <ul class="space-y-2">
+              {page.excludedItems.map((item) => (
+                <li class="flex items-start gap-2 text-text-secondary text-sm">
+                  <span class="text-red-500 font-bold flex-shrink-0">−</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-8 sm:mb-16" data-animate="fade-up">
+        <h2 class="text-2xl sm:text-3xl font-bold text-primary mb-6 text-center">Daily Schedule</h2>
+        <div class="max-w-3xl mx-auto">
+          {page.itinerary.split('\n\n').map((paragraph) => (
+            <p class="text-text-secondary mb-3 leading-relaxed">{paragraph}</p>
+          ))}
+        </div>
+      </div>
+
+      <div class="mb-8 sm:mb-16 bg-surface border border-gray-200/50 rounded-lg p-4 sm:p-8" data-animate="fade-up">
+        <h2 class="text-2xl sm:text-3xl font-bold text-primary mb-6">{page.refundPolicy}</h2>
+        <p class="text-text-secondary mb-4">{page.refundIntro}</p>
+        <ul class="space-y-2 ml-4">
+          {page.refundItems.map((item) => (
+            <li class="flex items-start gap-2 text-text-secondary">
+              <span class="text-accent flex-shrink-0">•</span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="mb-8 sm:mb-16" data-animate="fade-up">
+        <h2 class="text-2xl sm:text-3xl font-bold text-primary mb-6 text-center">{page.whatToBring}</h2>
+        <div class="max-w-3xl mx-auto">
+          <ul class="space-y-2 ml-4">
+            {page.whatToBringItems.map((item) => (
+              <li class="flex items-start gap-2 text-text-secondary">
+                <span class="text-accent flex-shrink-0">✓</span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      {(['hurghada', 'safaga', 'marsaAlam'] as const).map((region) => {
+        const area = locations[region];
+        return (
+          <section class="mb-12 sm:mb-20" data-animate="fade-up">
+            <div class="text-center mb-6 sm:mb-8">
+              <h2 class="text-2xl sm:text-4xl font-bold text-primary mb-2">{area.title}</h2>
+              <p class="text-text-secondary">{area.subtitle}</p>
+            </div>
+
+            <div class="mb-6 sm:mb-8 rounded-xl overflow-hidden shadow-premium">
+              <img src={area.mapImage} alt={area.title} class="w-full" loading="lazy" />
+            </div>
+
+            <div class="flex gap-3 sm:gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0">
+              {area.sites.map((site) => (
+                <button
+                  class="dive-site-card snap-start flex-shrink-0 w-64 sm:w-72 bg-surface rounded-xl overflow-hidden shadow-premium border border-gray-200/50 cursor-pointer hover:shadow-lg transition-shadow text-left"
+                  data-site-id={site.id}
+                  data-site-name={site.name}
+                  data-site-level={site.level}
+                  data-site-type={site.type}
+                  data-site-depth={site.maxDepth}
+                  data-site-description={site.description}
+                  data-site-image={site.image}
+                >
+                  <div class="relative h-40 sm:h-48 overflow-hidden">
+                    <img src={site.image} alt={site.name} class="w-full h-full object-cover" loading="lazy" />
+                    <div class="absolute top-2 right-2 bg-primary/90 text-white text-xs px-2 py-1 rounded-full">{site.maxDepth}</div>
+                  </div>
+                  <div class="p-3 sm:p-4">
+                    <h3 class="text-base sm:text-lg font-bold text-primary mb-1">{site.name}</h3>
+                    <div class="flex flex-wrap gap-1.5 sm:gap-2 mb-2">
+                      <span class="bg-secondary/15 text-ocean-dark text-xs px-2 py-1 rounded-full font-medium">{site.level}</span>
+                      <span class="bg-accent/15 text-sand text-xs px-2 py-1 rounded-full font-medium">{site.type}</span>
+                    </div>
+                    <p class="text-text-secondary text-sm line-clamp-3">{site.description.substring(0, 120)}...</p>
+                  </div>
+                </button>
+              ))}
+            </div>
+          </section>
+        );
+      })}
+
+      <div class="text-center py-4" data-animate="fade-up">
+        <a href={`/${lang}/contact`} class="inline-block bg-secondary text-white px-6 sm:px-8 py-3 sm:py-4 rounded-md font-semibold hover:bg-ocean-muted transition-colors text-base sm:text-lg w-full sm:w-auto">
+          {page.bookNow}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div id="dive-site-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4">
+    <div class="absolute inset-0 bg-black/60" id="modal-backdrop"></div>
+    <div class="relative bg-white rounded-xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto" id="modal-content">
+      <button id="modal-close" class="absolute top-3 right-3 sm:top-4 sm:right-4 z-10 w-8 h-8 flex items-center justify-center rounded-full bg-white/90 hover:bg-white text-primary font-bold text-xl transition-colors">✕</button>
+      <div class="relative h-48 sm:h-64 overflow-hidden rounded-t-xl">
+        <img id="modal-image" src="" alt="" class="w-full h-full object-cover" />
+      </div>
+      <div class="p-4 sm:p-6">
+        <h3 id="modal-title" class="text-xl sm:text-2xl font-bold text-primary mb-3"></h3>
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span id="modal-level" class="bg-secondary/15 text-ocean-dark text-sm px-3 py-1 rounded-full font-medium"></span>
+          <span id="modal-type" class="bg-accent/15 text-sand text-sm px-3 py-1 rounded-full font-medium"></span>
+          <span id="modal-depth" class="bg-primary/10 text-primary text-sm px-3 py-1 rounded-full font-medium"></span>
+        </div>
+        <div id="modal-description" class="text-text-secondary leading-relaxed"></div>
+      </div>
+    </div>
+  </div>
 
       <div class="grid md:grid-cols-2 gap-12 mb-16" data-animate="fade-up">
         <div>

@@ -1,18 +1,19 @@
 {
-  "nav": {
-    "home": "Home",
-    "courses": "Courses",
-    "specialties": "Specialties",
-    "adventure": "One Week Adventure",
-    "dailyDive": "Daily Dive",
-    "diving": "Diving",
-    "contact": "Contact Us",
-    "signIn": "Sign In",
-    "signUp": "Sign Up",
-    "dashboard": "Dashboard",
-    "admin": "Admin",
-    "language": "Language"
-  },
+    "nav": {
+      "home": "Home",
+      "courses": "Courses",
+      "specialties": "Specialties",
+      "adventure": "One Week Adventure",
+      "dailyDive": "Daily Dive",
+      "discoverDiving": "Discover Diving",
+      "diving": "Diving",
+      "contact": "Contact Us",
+      "signIn": "Sign In",
+      "signUp": "Sign Up",
+      "dashboard": "Dashboard",
+      "admin": "Admin",
+      "language": "Language"
+    },
   "home": {
     "title": "Scuba Adventures - Home",
     "description": "Premium scuba diving academy.",

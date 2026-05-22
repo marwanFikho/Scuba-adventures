@@ -1,18 +1,19 @@
 {
-  "nav": {
-    "home": "Главная",
-    "courses": "Курсы",
-    "specialties": "Специализации",
-    "adventure": "Недельное Приключение",
-    "dailyDive": "Ежедневные Дайв-Туры",
-    "diving": "Дайвинг",
-    "contact": "Контакты",
-    "signIn": "Войти",
-    "signUp": "Регистрация",
-    "dashboard": "Кабинет",
-    "admin": "Админ",
-    "language": "Язык"
-  },
+    "nav": {
+      "home": "Home",
+      "courses": "Courses",
+      "specialties": "Specialties",
+      "adventure": "One Week Adventure",
+      "dailyDive": "Daily Dive",
+      "discoverDiving": "Погружение для начинающих",
+      "diving": "Diving",
+      "contact": "Contact Us",
+      "signIn": "Sign In",
+      "signUp": "Sign Up",
+      "dashboard": "Dashboard",
+      "admin": "Admin",
+      "language": "Language"
+    },
   "home": {
     "title": "Scuba Adventures - Главная",
     "description": "Премиальная дайвинг-академия.",

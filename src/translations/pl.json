@@ -1,18 +1,19 @@
 {
-  "nav": {
-    "home": "Strona główna",
-    "courses": "Kursy",
-    "specialties": "Specjalizacje",
-    "adventure": "Jednotygodniowa Przygoda",
-    "dailyDive": "Codzienne Nurkowania",
-    "diving": "Nurkowanie",
-    "contact": "Kontakt",
-    "signIn": "Zaloguj się",
-    "signUp": "Zarejestruj się",
-    "dashboard": "Panel",
-    "admin": "Admin",
-    "language": "Język"
-  },
+    "nav": {
+      "home": "Home",
+      "courses": "Courses",
+      "specialties": "Specialties",
+      "adventure": "One Week Adventure",
+      "dailyDive": "Daily Dive",
+      "discoverDiving": "Odkryj Nurkowanie",
+      "diving": "Diving",
+      "contact": "Contact Us",
+      "signIn": "Sign In",
+      "signUp": "Sign Up",
+      "dashboard": "Dashboard",
+      "admin": "Admin",
+      "language": "Language"
+    },
   "home": {
     "title": "Scuba Adventures - Strona główna",
     "description": "Premium akademia nurkowania.",
