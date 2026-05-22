@@ -214,6 +214,7 @@ const { lang, isAdmin } = Astro.props;
 
     function handleClick(e) {
       if (!editMode) return;
+      e.preventDefault();
       e.stopPropagation();
 
       var el = e.currentTarget;
