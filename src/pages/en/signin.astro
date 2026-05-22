@@ -30,21 +30,21 @@ if (Astro.request.method === 'POST') {
 <MainLayout title={t.auth.signInTitle} description={t.auth.signInDesc}>
     <div class="max-w-md mx-auto py-20">
         <Card>
-            <h1 class="text-3xl font-bold text-center mb-6">{t.auth.signInTitle}</h1>
+            <h1 class="text-3xl font-bold text-center mb-6" data-i18n-key="auth.signInTitle">{t.auth.signInTitle}</h1>
             {error && <p class="text-red-500 text-center mb-4">{error}</p>}
             <form method="POST" class="space-y-6">
                 <div>
-                    <label for="email" class="block text-sm font-medium text-text-secondary">{t.auth.email}</label>
-                    <Input type="email" name="email" id="email" placeholder={t.auth.emailPlaceholder} required />
+                    <label for="email" class="block text-sm font-medium text-text-secondary" data-i18n-key="auth.email">{t.auth.email}</label>
+                    <Input type="email" name="email" id="email" placeholder={t.auth.emailPlaceholder} required data-i18n-key="auth.emailPlaceholder" />
                 </div>
                 <div>
-                    <label for="password" class="block text-sm font-medium text-text-secondary">{t.auth.password}</label>
-                    <Input type="password" name="password" id="password" placeholder={t.auth.passwordPlaceholder} required />
+                    <label for="password" class="block text-sm font-medium text-text-secondary" data-i18n-key="auth.password">{t.auth.password}</label>
+                    <Input type="password" name="password" id="password" placeholder={t.auth.passwordPlaceholder} required data-i18n-key="auth.passwordPlaceholder" />
                 </div>
-                <Button type="submit" class="w-full" size="lg">{t.auth.signIn}</Button>
+                <Button type="submit" class="w-full" size="lg" data-i18n-key="auth.signIn">{t.auth.signIn}</Button>
             </form>
-            <p class="mt-6 text-center text-sm text-text-secondary">
-                {t.auth.noAccount} <a href={`${basePath}/signup`} class="font-medium text-ocean-dark hover:underline">{t.auth.signUp}</a>
+            <p class="mt-6 text-center text-sm text-text-secondary" data-i18n-key="auth.noAccount">
+                {t.auth.noAccount} <a href={`${basePath}/signup`} class="font-medium text-ocean-dark hover:underline" data-i18n-key="auth.signUp">{t.auth.signUp}</a>
             </p>
         </Card>
     </div>

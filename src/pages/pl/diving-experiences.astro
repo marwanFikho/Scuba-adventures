@@ -22,12 +22,12 @@ const jsonLd = {
   <section class="pt-28 pb-16 bg-background" data-animate="fade-up">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
-        <h1 class="text-4xl font-bold">{t.home.featuredTitle}</h1>
-        <p class="text-lg text-text-secondary mt-3">{t.home.featuredSubtitle}</p>
+        <h1 class="text-4xl font-bold" data-i18n-key="home.featuredTitle">{t.home.featuredTitle}</h1>
+        <p class="text-lg text-text-secondary mt-3" data-i18n-key="home.featuredSubtitle">{t.home.featuredSubtitle}</p>
       </div>
       {divingExperiences.length === 0 && (
         <div class="text-center py-12">
-          <p class="text-text-secondary text-lg">{t.courses.noCourses}</p>
+          <p class="text-text-secondary text-lg" data-i18n-key="courses.noCourses">{t.courses.noCourses}</p>
         </div>
       )}
     </div>

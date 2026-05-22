@@ -34,7 +34,7 @@ export type Trip = {
 	image: string;
 };
 
-const mapCourse = (row: ReturnType<typeof catalogRepository.findAllCourses>[number]): Course => ({
+const mapCourse = (row: Awaited<ReturnType<typeof catalogRepository.findAllCourses>>[number]): Course => ({
 	id: row.id,
 	title: row.title,
 	shortDescription: row.short_description ?? row.description,
@@ -50,7 +50,7 @@ const mapCourse = (row: ReturnType<typeof catalogRepository.findAllCourses>[numb
 	images: row.image_url?.startsWith("/") ? [row.image_url] : [courseImage(row.id)]
 });
 
-const mapTrip = (row: ReturnType<typeof catalogRepository.findAllTrips>[number]): Trip => ({
+const mapTrip = (row: Awaited<ReturnType<typeof catalogRepository.findAllTrips>>[number]): Trip => ({
 	id: row.id,
 	title: row.title,
 	description: row.description,
@@ -62,38 +62,38 @@ const mapTrip = (row: ReturnType<typeof catalogRepository.findAllTrips>[number])
 	image: row.image_url?.startsWith("/") ? row.image_url : tripImage(row.id)
 });
 
-export const getCourses = (): Course[] => {
-	const rows = catalogRepository.findAllCourses();
+export const getCourses = async (): Promise<Course[]> => {
+	const rows = await catalogRepository.findAllCourses();
 	if (rows.length === 0) return mockCourses;
 	return rows.map(mapCourse);
 };
 
-export const getCourseById = (id: string): Course | undefined => {
-	const row = catalogRepository.findCourseById(id);
+export const getCourseById = async (id: string): Promise<Course | undefined> => {
+	const row = await catalogRepository.findCourseById(id);
 	if (row) return mapCourse(row);
 	return mockCourses.find((c) => c.id === id);
 };
 
-export const getTrips = (): Trip[] => {
-	const rows = catalogRepository.findAllTrips();
+export const getTrips = async (): Promise<Trip[]> => {
+	const rows = await catalogRepository.findAllTrips();
 	if (rows.length === 0) return mockTrips;
 	return rows.map(mapTrip);
 };
 
-export const getTripById = (id: string): Trip | undefined => {
-	const row = catalogRepository.findTripById(id);
+export const getTripById = async (id: string): Promise<Trip | undefined> => {
+	const row = await catalogRepository.findTripById(id);
 	if (row) return mapTrip(row);
 	return mockTrips.find((t) => t.id === id);
 };
 
-export const getSpecialties = () => {
-	const rows = catalogRepository.findAllSpecialties();
+export const getSpecialties = async () => {
+	const rows = await catalogRepository.findAllSpecialties();
 	if (rows.length === 0) return mockSpecialties;
 	return rows;
 };
 
-export const getGalleryImages = (): string[] => {
-	const rows = catalogRepository.findAllGallery();
+export const getGalleryImages = async (): Promise<string[]> => {
+	const rows = await catalogRepository.findAllGallery();
 	if (rows.length === 0) return mockGallery;
 	return rows.map((r) => (r.image_url.startsWith("/") ? r.image_url : r.image_url));
 };

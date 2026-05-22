@@ -11,11 +11,11 @@ const basePath = `/${lang}`;
 <MainLayout title={t.booking.successTitle} description={t.booking.successDesc}>
   <section class="pt-28 pb-24 bg-background">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h1 class="text-4xl font-bold">{t.booking.successHeading}</h1>
-      <p class="text-lg text-text-secondary mt-4">{t.booking.successText}</p>
+      <h1 class="text-4xl font-bold" data-i18n-key="booking.successHeading">{t.booking.successHeading}</h1>
+      <p class="text-lg text-text-secondary mt-4" data-i18n-key="booking.successText">{t.booking.successText}</p>
       <div class="mt-8 flex justify-center gap-4 flex-wrap">
-        <Button href={`${basePath}/dashboard`}>{t.booking.viewDashboard}</Button>
-        <Button href={`${basePath}/courses`} variant="outline">{t.booking.browseCourses}</Button>
+        <Button href={`${basePath}/dashboard`} data-i18n-key="booking.viewDashboard">{t.booking.viewDashboard}</Button>
+        <Button href={`${basePath}/courses`} variant="outline" data-i18n-key="booking.browseCourses">{t.booking.browseCourses}</Button>
       </div>
     </div>
   </section>

@@ -8,7 +8,7 @@ export async function POST(context: APIContext): Promise<Response> {
 
 	try {
 		const payload = await context.request.json();
-		const result = catalogAdminService.createGalleryItem(payload);
+		const result = await catalogAdminService.createGalleryItem(payload);
 		return new Response(JSON.stringify(result), { status: 201 });
 	} catch (error: any) {
 		return new Response(JSON.stringify({ error: error.message }), { status: 400 });

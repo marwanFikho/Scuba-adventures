@@ -21,7 +21,7 @@ export class BookingService {
 		}
 
 		const { itemType, itemId, lang = "en" } = parsed.data;
-		const item = itemType === "course" ? getCourseById(itemId) : getTripById(itemId);
+		const item = await (itemType === "course" ? getCourseById(itemId) : getTripById(itemId));
 
 		if (!item) {
 			throw new Error("Item not found");
@@ -31,20 +31,20 @@ export class BookingService {
 			throw new Error("No seats available");
 		}
 
-		const existing = bookingRepository.findActiveByUserAndItem(userId, itemId, itemType);
+		const existing = await bookingRepository.findActiveByUserAndItem(userId, itemId, itemType);
 		if (existing) {
 			throw new Error("You already have a confirmed booking for this item");
 		}
 
-		const booking = bookingRepository.createPendingBooking(userId, itemId, itemType);
-		bookingRepository.updateStatus(booking.id, "confirmed");
-		catalogRepository.decrementSeats(itemType, itemId);
+		const booking = await bookingRepository.createPendingBooking(userId, itemId, itemType);
+		await bookingRepository.updateStatus(booking.id, "confirmed");
+		await catalogRepository.decrementSeats(itemType, itemId);
 
-		paymentRepository.createPayment(booking.id, `reservation_${booking.id}`, item.price, "reserved");
+		await paymentRepository.createPayment(booking.id, `reservation_${booking.id}`, item.price, "reserved");
 
 		const admin = await userRepository.findAdmin();
 		if (admin) {
-			notificationRepository.createNotification(
+			await notificationRepository.createNotification(
 				admin.id,
 				`New reservation: ${item.title} (${booking.id})`
 			);

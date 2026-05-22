@@ -94,5 +94,16 @@ export const createTables = (db: Database) => {
             created_at INTEGER NOT NULL,
             FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
         );
+
+        CREATE TABLE IF NOT EXISTS page_content (
+            id TEXT PRIMARY KEY,
+            page TEXT NOT NULL,
+            section TEXT NOT NULL,
+            key TEXT NOT NULL,
+            lang TEXT NOT NULL DEFAULT 'en',
+            value TEXT NOT NULL,
+            updated_at INTEGER NOT NULL
+        );
+        CREATE UNIQUE INDEX IF NOT EXISTS idx_page_content_key ON page_content(page, section, key, lang);
     `);
 };

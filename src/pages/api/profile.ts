@@ -28,7 +28,7 @@ export async function PATCH(context: APIContext): Promise<Response> {
 		}
 	}
 
-	userRepository.updateProfile(context.locals.user.id, { email, displayName });
+	await userRepository.updateProfile(context.locals.user.id, { email, displayName });
 
 	return new Response(JSON.stringify({ ok: true }), { status: 200 });
 }

@@ -21,7 +21,7 @@ const formattedDescription = formatDescription(course.longDescription);
 <MainLayout title={course.title} description={course.shortDescription}>
   <section class="pt-28 pb-16 bg-background" data-animate="fade-up">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <a href={`/${lang}/courses`} class="text-ocean-dark hover:underline mb-8 inline-block font-medium">← {t.courses.backToCourses}</a>
+      <a href={`/${lang}/courses`} class="text-ocean-dark hover:underline mb-8 inline-block font-medium" data-i18n-key="courses.backToCourses">← {t.courses.backToCourses}</a>
       
       <div class="grid md:grid-cols-2 gap-8 mb-12">
         <div class="relative h-96 overflow-hidden rounded-xl shadow-premium">
@@ -34,34 +34,34 @@ const formattedDescription = formatDescription(course.longDescription);
           <div class="bg-surface border border-gray-200/50 rounded-lg p-6 space-y-4 mb-8">
             {course.price && (
               <div class="flex items-center justify-between pb-4 border-b border-gray-200">
-                <span class="text-text-secondary">{t.courses.price}</span>
+                <span class="text-text-secondary" data-i18n-key="courses.price">{t.courses.price}</span>
                 <span class="text-3xl font-bold text-primary">€{course.price}</span>
               </div>
             )}
             
             {course.durationDays && (
               <div class="flex items-center justify-between pb-4 border-b border-gray-200">
-                <span class="text-text-secondary">{t.courses.duration}</span>
+                <span class="text-text-secondary" data-i18n-key="courses.duration">{t.courses.duration}</span>
                 <span class="font-semibold">{course.durationDays} {dayLabel}</span>
               </div>
             )}
             
             {course.equipment && (
               <div class="flex items-center justify-between pb-4 border-b border-gray-200">
-                <span class="text-text-secondary">{t.courses.equipment}</span>
+                <span class="text-text-secondary" data-i18n-key="courses.equipment">{t.courses.equipment}</span>
                 <span class="font-semibold">{course.equipment}</span>
               </div>
             )}
             
             {course.requirements && (
               <div class="requirements-row">
-                <span class="text-text-secondary requirements-label">{t.courses.requirements}</span>
+                <span class="text-text-secondary requirements-label" data-i18n-key="courses.requirements">{t.courses.requirements}</span>
                 <span class="requirements-value">{course.requirements}</span>
               </div>
             )}
           </div>
           
-          <a href={`/${lang}/contact`} class="block w-full bg-secondary text-white py-3 rounded-md font-semibold hover:bg-opacity-90 transition-colors text-center">
+          <a href={`/${lang}/contact`} class="block w-full bg-secondary text-white py-3 rounded-md font-semibold hover:bg-opacity-90 transition-colors text-center" data-i18n-key="common.bookNow">
             {t.common.bookNow}
           </a>
         </div>
@@ -72,7 +72,7 @@ const formattedDescription = formatDescription(course.longDescription);
       <div class="grid md:grid-cols-2 gap-12 mb-12">
         {course.includes && course.includes.length > 0 && (
           <div>
-            <h3 class="text-xl font-bold text-primary mb-4">{t.courses.includes}</h3>
+            <h3 class="text-xl font-bold text-primary mb-4" data-i18n-key="courses.includes">{t.courses.includes}</h3>
             <ul class="space-y-3">
               {course.includes.map((item) => (
                 <li class="flex items-start gap-3">
@@ -86,7 +86,7 @@ const formattedDescription = formatDescription(course.longDescription);
         
         {course.excludes && course.excludes.length > 0 && (
           <div>
-            <h3 class="text-xl font-bold text-primary mb-4">{t.courses.excludes}</h3>
+            <h3 class="text-xl font-bold text-primary mb-4" data-i18n-key="courses.excludes">{t.courses.excludes}</h3>
             <ul class="space-y-3">
               {course.excludes.map((item) => (
                 <li class="flex items-start gap-3">

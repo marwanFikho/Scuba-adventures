@@ -11,9 +11,11 @@
     "build:vercel": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "seed": "node src/db/seed.js"
+    "seed": "node src/db/seed.js",
+    "seed:turso": "npx tsx src/db/seed-turso.ts"
   },
   "dependencies": {
+    "@libsql/client": "^0.17.3",
     "@lucia-auth/adapter-sqlite": "^3.0.2",
     "astro": "^6.3.6",
     "better-sqlite3": "^11.5.0",

@@ -19,30 +19,30 @@ if (!session) {
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-10">
                 <div>
-                    <h1 class="text-4xl font-bold">{t.dashboard.welcome}, {user.email}</h1>
-                    <p class="text-text-secondary mt-2">{t.dashboard.subtitle}</p>
+                    <h1 class="text-4xl font-bold" data-i18n-key="dashboard.welcome">{t.dashboard.welcome}, {user.email}</h1>
+                    <p class="text-text-secondary mt-2" data-i18n-key="dashboard.subtitle">{t.dashboard.subtitle}</p>
                 </div>
                 <form method="POST" action="/api/logout">
-                    <button type="submit" class="text-red-500 hover:underline">{t.dashboard.logout}</button>
+                    <button type="submit" class="text-red-500 hover:underline" data-i18n-key="dashboard.logout">{t.dashboard.logout}</button>
                 </form>
             </div>
 
             <div class="grid md:grid-cols-2 gap-8">
                 <Card>
-                    <h2 class="text-2xl font-semibold mb-3">{t.dashboard.upcomingTrips}</h2>
-                    <p class="text-text-secondary">{t.dashboard.noTrips}</p>
+                    <h2 class="text-2xl font-semibold mb-3" data-i18n-key="dashboard.upcomingTrips">{t.dashboard.upcomingTrips}</h2>
+                    <p class="text-text-secondary" data-i18n-key="dashboard.noTrips">{t.dashboard.noTrips}</p>
                 </Card>
                 <Card>
-                    <h2 class="text-2xl font-semibold mb-3">{t.dashboard.purchasedCourses}</h2>
-                    <p class="text-text-secondary">{t.dashboard.noCourses}</p>
+                    <h2 class="text-2xl font-semibold mb-3" data-i18n-key="dashboard.purchasedCourses">{t.dashboard.purchasedCourses}</h2>
+                    <p class="text-text-secondary" data-i18n-key="dashboard.noCourses">{t.dashboard.noCourses}</p>
                 </Card>
                 <Card>
-                    <h2 class="text-2xl font-semibold mb-3">{t.dashboard.paymentHistory}</h2>
-                    <p class="text-text-secondary">{t.dashboard.noPayments}</p>
+                    <h2 class="text-2xl font-semibold mb-3" data-i18n-key="dashboard.paymentHistory">{t.dashboard.paymentHistory}</h2>
+                    <p class="text-text-secondary" data-i18n-key="dashboard.noPayments">{t.dashboard.noPayments}</p>
                 </Card>
                 <Card>
-                    <h2 class="text-2xl font-semibold mb-3">{t.dashboard.certifications}</h2>
-                    <p class="text-text-secondary">{t.dashboard.noBookings}</p>
+                    <h2 class="text-2xl font-semibold mb-3" data-i18n-key="dashboard.certifications">{t.dashboard.certifications}</h2>
+                    <p class="text-text-secondary" data-i18n-key="dashboard.noBookings">{t.dashboard.noBookings}</p>
                 </Card>
             </div>
         </div>

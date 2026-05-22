@@ -1,6 +1,6 @@
 import { Lucia } from "lucia";
-import { BetterSqlite3Adapter } from "@lucia-auth/adapter-sqlite";
-import { db, isDbAvailable } from "../db/client";
+import { BetterSqlite3Adapter, LibSQLAdapter } from "@lucia-auth/adapter-sqlite";
+import { db, isTurso, tursoClient } from "../db/client";
 
 declare module "lucia" {
 	interface Register {
@@ -12,10 +12,18 @@ declare module "lucia" {
 	}
 }
 
-const adapter = isDbAvailable && db ? new BetterSqlite3Adapter(db, {
-	user: "users",
-	session: "sessions"
-}) : null;
+let adapter = null;
+if (isTurso && tursoClient) {
+	adapter = new LibSQLAdapter(tursoClient, {
+		user: "users",
+		session: "sessions"
+	});
+} else if (db) {
+	adapter = new BetterSqlite3Adapter(db, {
+		user: "users",
+		session: "sessions"
+	});
+}
 
 export const lucia = adapter ? new Lucia(adapter, {
 	sessionCookie: {

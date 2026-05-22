@@ -24,8 +24,8 @@ const jsonLd = {
   <section class="pt-28 pb-16 bg-background" data-animate="fade-up">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
-        <h1 class="text-4xl font-bold">{t.courses.heading}</h1>
-        <p class="text-lg text-text-secondary mt-3">{t.courses.subtitle}</p>
+        <h1 class="text-4xl font-bold" data-i18n-key="courses.heading">{t.courses.heading}</h1>
+        <p class="text-lg text-text-secondary mt-3" data-i18n-key="courses.subtitle">{t.courses.subtitle}</p>
       </div>
       
       {courses.length > 0 ? (
@@ -48,19 +48,19 @@ const jsonLd = {
                     )}
                     {course.durationDays && (
                       <div class="flex items-center gap-2 text-sm text-text-secondary">
-                        <span class="font-semibold">{t.courses.duration}:</span>
+                        <span class="font-semibold" data-i18n-key="courses.duration">{t.courses.duration}:</span>
                         <span>{course.durationDays} {dayLabel(course.durationDays)}</span>
                       </div>
                     )}
                     {course.requirements && (
                       <div class="flex items-center gap-2 text-sm text-text-secondary">
-                        <span class="font-semibold">{t.courses.requirements}:</span>
+                        <span class="font-semibold" data-i18n-key="courses.requirements">{t.courses.requirements}:</span>
                         <span>{course.requirements}</span>
                       </div>
                     )}
                   </div>
                   
-                  <button class="w-full bg-secondary text-white py-2 rounded-md font-semibold hover:bg-opacity-90 transition-colors">
+                  <button class="w-full bg-secondary text-white py-2 rounded-md font-semibold hover:bg-opacity-90 transition-colors" data-i18n-key="courses.learnMore">
                     {t.courses.learnMore}
                   </button>
                 </div>
@@ -70,7 +70,7 @@ const jsonLd = {
         </div>
       ) : (
         <div class="text-center py-12">
-          <p class="text-text-secondary text-lg">{t.courses.noCourses}</p>
+          <p class="text-text-secondary text-lg" data-i18n-key="courses.noCourses">{t.courses.noCourses}</p>
         </div>
       )}
     </div>

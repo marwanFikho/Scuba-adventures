@@ -21,7 +21,7 @@ const formattedDescription = formatDescription(specialty.longDescription);
 <MainLayout title={specialty.title} description={specialty.shortDescription}>
   <section class="pt-28 pb-16 bg-background" data-animate="fade-up">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <a href={`/${lang}/specialties`} class="text-ocean-dark hover:underline mb-8 inline-block font-medium">← {t.specialties.backToSpecialties}</a>
+      <a href={`/${lang}/specialties`} class="text-ocean-dark hover:underline mb-8 inline-block font-medium" data-i18n-key="specialties.backToSpecialties">← {t.specialties.backToSpecialties}</a>
       
       <div class="grid md:grid-cols-2 gap-8 mb-12">
         <div class="relative h-96 overflow-hidden rounded-xl shadow-premium">
@@ -34,34 +34,34 @@ const formattedDescription = formatDescription(specialty.longDescription);
           <div class="bg-surface border border-gray-200/50 rounded-lg p-6 space-y-4 mb-8">
             {specialty.price && (
               <div class="flex items-center justify-between pb-4 border-b border-gray-200">
-                <span class="text-text-secondary">{t.specialties.price}</span>
+                <span class="text-text-secondary" data-i18n-key="specialties.price">{t.specialties.price}</span>
                 <span class="text-3xl font-bold text-primary">€{specialty.price}</span>
               </div>
             )}
             
             {specialty.durationDays && (
               <div class="flex items-center justify-between pb-4 border-b border-gray-200">
-                <span class="text-text-secondary">{t.specialties.duration}</span>
+                <span class="text-text-secondary" data-i18n-key="specialties.duration">{t.specialties.duration}</span>
                 <span class="font-semibold">{specialty.durationDays} {dayLabel}</span>
               </div>
             )}
             
             {specialty.equipment && (
               <div class="flex items-center justify-between pb-4 border-b border-gray-200">
-                <span class="text-text-secondary">{t.specialties.equipment}</span>
+                <span class="text-text-secondary" data-i18n-key="specialties.equipment">{t.specialties.equipment}</span>
                 <span class="font-semibold">{specialty.equipment}</span>
               </div>
             )}
             
             {specialty.requirements && (
               <div class="requirements-row">
-                <span class="text-text-secondary requirements-label">{t.specialties.requirements}</span>
+                <span class="text-text-secondary requirements-label" data-i18n-key="specialties.requirements">{t.specialties.requirements}</span>
                 <span class="requirements-value">{specialty.requirements}</span>
               </div>
             )}
           </div>
           
-          <a href={`/${lang}/contact`} class="block w-full bg-secondary text-white py-3 rounded-md font-semibold hover:bg-opacity-90 transition-colors text-center">
+          <a href={`/${lang}/contact`} class="block w-full bg-secondary text-white py-3 rounded-md font-semibold hover:bg-opacity-90 transition-colors text-center" data-i18n-key="common.bookNow">
             {t.common.bookNow}
           </a>
         </div>
@@ -72,7 +72,7 @@ const formattedDescription = formatDescription(specialty.longDescription);
       <div class="grid md:grid-cols-2 gap-12 mb-12">
         {specialty.includes && specialty.includes.length > 0 && (
           <div>
-            <h3 class="text-xl font-bold text-primary mb-4">{t.specialties.includes}</h3>
+            <h3 class="text-xl font-bold text-primary mb-4" data-i18n-key="specialties.includes">{t.specialties.includes}</h3>
             <ul class="space-y-3">
               {specialty.includes.map((item) => (
                 <li class="flex items-start gap-3">
@@ -86,7 +86,7 @@ const formattedDescription = formatDescription(specialty.longDescription);
         
         {specialty.excludes && specialty.excludes.length > 0 && (
           <div>
-            <h3 class="text-xl font-bold text-primary mb-4">{t.specialties.excludes}</h3>
+            <h3 class="text-xl font-bold text-primary mb-4" data-i18n-key="specialties.excludes">{t.specialties.excludes}</h3>
             <ul class="space-y-3">
               {specialty.excludes.map((item) => (
                 <li class="flex items-start gap-3">

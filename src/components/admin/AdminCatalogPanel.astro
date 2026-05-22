@@ -4,7 +4,7 @@ import type { getTranslations } from '../../lib/i18n';
 
 interface Props {
 	t: ReturnType<typeof getTranslations>;
-	data: ReturnType<typeof import('../../services/dashboard.service').dashboardService.getAdminDashboard>;
+	data: Awaited<ReturnType<typeof import('../../services/dashboard.service').dashboardService.getAdminDashboard>>;
 }
 
 const { t, data } = Astro.props;

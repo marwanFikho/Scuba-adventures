@@ -11,10 +11,10 @@ const basePath = `/${lang}`;
 <MainLayout title={t.notFound.title} description={t.notFound.description}>
   <section class="pt-28 pb-24 bg-background">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h1 class="text-5xl font-bold">{t.notFound.heading}</h1>
-      <p class="text-lg text-text-secondary mt-4">{t.notFound.text}</p>
+      <h1 class="text-5xl font-bold" data-i18n-key="notFound.heading">{t.notFound.heading}</h1>
+      <p class="text-lg text-text-secondary mt-4" data-i18n-key="notFound.text">{t.notFound.text}</p>
       <div class="mt-8">
-        <Button href={`${basePath}/`}>{t.notFound.returnHome}</Button>
+        <Button href={`${basePath}/`} data-i18n-key="notFound.returnHome">{t.notFound.returnHome}</Button>
       </div>
     </div>
   </section>

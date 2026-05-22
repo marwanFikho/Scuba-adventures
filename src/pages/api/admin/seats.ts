@@ -23,9 +23,9 @@ export async function PATCH(context: APIContext): Promise<Response> {
 	const { itemType, itemId, seats } = parsed.data;
 
 	if (itemType === "course") {
-		catalogRepository.updateCourseSeats(itemId, seats);
+		await catalogRepository.updateCourseSeats(itemId, seats);
 	} else {
-		catalogRepository.updateTripSeats(itemId, seats);
+		await catalogRepository.updateTripSeats(itemId, seats);
 	}
 
 	return new Response(JSON.stringify({ ok: true }), { status: 200 });

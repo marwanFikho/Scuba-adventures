@@ -11,7 +11,7 @@ export async function PATCH(context: APIContext): Promise<Response> {
 
 	try {
 		const payload = await context.request.json();
-		const result = catalogAdminService.updateSpecialty(id, payload);
+		const result = await catalogAdminService.updateSpecialty(id, payload);
 		return new Response(JSON.stringify(result), { status: 200 });
 	} catch (error: any) {
 		return new Response(JSON.stringify({ error: error.message }), { status: 400 });
@@ -26,7 +26,7 @@ export async function DELETE(context: APIContext): Promise<Response> {
 	if (!id) return new Response(JSON.stringify({ error: "Missing id" }), { status: 400 });
 
 	try {
-		catalogAdminService.deleteSpecialty(id);
+		await catalogAdminService.deleteSpecialty(id);
 		return new Response(JSON.stringify({ ok: true }), { status: 200 });
 	} catch (error: any) {
 		return new Response(JSON.stringify({ error: error.message }), { status: 400 });

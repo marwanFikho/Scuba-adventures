@@ -10,7 +10,7 @@ export async function DELETE(context: APIContext): Promise<Response> {
 	if (!id) return new Response(JSON.stringify({ error: "Missing id" }), { status: 400 });
 
 	try {
-		catalogAdminService.deleteGalleryItem(id);
+		await catalogAdminService.deleteGalleryItem(id);
 		return new Response(JSON.stringify({ ok: true }), { status: 200 });
 	} catch (error: any) {
 		return new Response(JSON.stringify({ error: error.message }), { status: 400 });
