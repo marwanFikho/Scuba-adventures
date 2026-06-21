@@ -49,11 +49,11 @@ const accountLabel = user ? t.nav.dashboard : t.nav.signIn;
               {link.text}
             </a>
           ))}					<div class="relative" id="diving-dropdown">
-						<button type="button" class="diving-dropdown-btn text-text-secondary hover:text-ocean-dark px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-1" aria-haspopup="true" aria-expanded="false">
+						<button type="button" class="diving-dropdown-btn hover:text-yellow-500 hover:text-yellow-500! px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-1" aria-haspopup="true" aria-expanded="false">
 							<span data-i18n-key="nav.diving">{t.nav.diving}</span>
-							<ChevronDownIcon class="w-4 h-4 diving-chevron transition-transform duration-200 text-ocean-muted" />
+							<ChevronDownIcon class="w-4 h-4 diving-chevron transition-transform duration-200 hover:text-yellow-500" />
 						</button>
-						<div class="diving-dropdown-menu absolute left-0 mt-2 w-56 rounded-md shadow-premium bg-white border border-ocean-muted/30 hidden overflow-hidden" role="menu">
+						<div class="diving-dropdown-menu absolute left-0 mt-2 w-56 rounded-md shadow-premium bg-zinc-800  border-white/30 hidden overflow-hidden" role="menu">
 							{divingLinks.map((link) => (
 								<a href={link.href} class="block px-4 py-3 text-sm text-text-secondary hover:text-ocean-dark hover:bg-ocean-muted/10 transition-colors" role="menuitem">{link.text}</a>
 							))}
