@@ -4,8 +4,10 @@ import { db } from '../../db/client';
 
 // 2. جلب التعليقات من الجدول (افترضنا إن اسم الجدول comments)
 // وتقدر ترتبهم من الأحدث للأقدم
-const comments = db.prepare('SELECT * FROM comments ORDER BY id DESC').all();
----
+let comments: any[] = [];
+if (db) {
+  comments = (db as any).prepare('SELECT * FROM comments ORDER BY id DESC').all() || [];
+}---
 
 <html lang="en">
   <head>
