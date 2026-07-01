@@ -3,6 +3,8 @@ import MainLayout from '../../../layouts/MainLayout.astro';
 import { getCourseById } from '../../../lib/course-translations';
 import { getLangFromPathname, getTranslations } from '../../../lib/i18n';
 import { formatDescription } from '../../../lib/format-description';
+// تم إضافة استيراد زر الباي بال هنا بشكل صحيح لتجنب خطأ ReferenceError
+import PayPalButton from '../../../components/PayPalButton.astro';
 
 const lang = getLangFromPathname(Astro.url.pathname);
 const t = getTranslations(lang);
@@ -61,9 +63,23 @@ const formattedDescription = formatDescription(course.longDescription);
             )}
           </div>
           
-          <a href={`/${lang}/contact`} class="block w-full bg-secondary text-white py-3 rounded-md font-semibold hover:bg-opacity-90 transition-colors text-center" data-i18n-key="common.bookNow">
-            {t.common.bookNow}
-          </a>
+          <!-- Price & PayPal Button (تم تعديل التنسيق ليتطابق تماماً مع image_6.png) -->
+          <div class="bg-[#fcfbf9] border border-gray-200 rounded-xl p-6 mb-8 shadow-sm">
+            <h3 class="text-lg font-bold text-[#1e3a5f] mb-1">Price</h3>
+            <p class="text-3xl font-bold text-[#b48454] mb-2">
+              {course.currency || 'EUR'} {course.price ? course.price.toFixed(2) : '0.00'}
+            </p>
+            <p class="text-sm text-gray-500 mb-6">Free transfer from Hurghada hotels included</p>
+            
+            <PayPalButton 
+                price={course.price}
+                currency={course.currency || 'EUR'}
+                productName={course.title}
+                itemId={course.id}
+                itemType="course"
+                priceLabel="Book Now"
+            />
+          </div>
         </div>
       </div>
       

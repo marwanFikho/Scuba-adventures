@@ -67,8 +67,7 @@ const itemType = url.searchParams.get('itemType') || 'course';
 <script is:inline define:vars={{ price, currency, product, itemId, itemType }}>
   // Load PayPal SDK
   const script = document.createElement('script');
-  script.src = 'https://www.paypal.com/sdk/js?client-id=BAAFa_jVHYWSZcNSOynAOqc_d9niNoHt74-ZF13RRRkICiqIZOc7YWVokwjRS_5CUtuL1EGzquSI8bYVXY&components=buttons&currency=' + currency;
-  script.async = true;
+  script.src = 'https://www.paypal.com/sdk/js?client-id=AW1vnVydIllAOH0MLzXDIdmlCS6fafy3mJi51FJlhYmdtpr37Ql3oDeJ39HFrmbIFvNb_zRdOMe2kJok&currency=' + currency;  script.async = true;
   script.onload = () => {
     if (typeof paypal !== 'undefined') {
       paypal.Buttons({
