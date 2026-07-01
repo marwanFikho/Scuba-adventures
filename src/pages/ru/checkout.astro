@@ -86,7 +86,7 @@ const itemType = url.searchParams.get('itemType') || 'course';
         onApprove: function(data, actions) {
           return actions.order.capture().then(function(details) {
             // Payment successful
-            window.location.href = `/en/booking-success?booking_id=${itemId}&transaction_id=${details.id}`;
+            window.location.href = `/ru/booking-success?booking_id=${itemId}&transaction_id=${details.id}`;
           });
         },
         onError: function(err) {
@@ -94,7 +94,7 @@ const itemType = url.searchParams.get('itemType') || 'course';
           alert('Payment error: ' + err.message);
         },
         onCancel: function(data) {
-          window.location.href = '/en/booking-cancelled';
+          window.location.href = '/ru/booking-cancelled';
         }
       }).render('#paypal-button-container');
     }
